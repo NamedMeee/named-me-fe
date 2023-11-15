@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { AppProps } from 'next/app';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -9,14 +10,10 @@ export const metadata: Metadata = {
   description: '자신만의 트위터 포트폴리오를 만들어보세요 😎',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <Component {...pageProps} />
+    </>
   );
 }

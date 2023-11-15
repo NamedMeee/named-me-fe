@@ -94,48 +94,48 @@ module.exports = {
         slideDown: 'slideDown 0.2s ease-in-out',
         slideLeftToRight: 'slideLeftToRight 1s ease-in-out',
         backgroundHighlight: 'changeBgColor 5s ease',
-        dropShadow: {
-          tooltip: [
-            '0 1px 8px rgba(0, 0, 0, 0.16)',
-            '0 1px 0 rgba(0, 0, 0, 0.08)',
-          ],
-        },
+      },
+      dropShadow: {
+        tooltip: [
+          '0 1px 8px rgba(0, 0, 0, 0.16)',
+          '0 1px 0 rgba(0, 0, 0, 0.08)',
+        ],
       },
     },
-    plugins: [
-      require('@tailwindcss/line-clamp'),
-      require('tailwind-scrollbar-hide'),
-      plugin(({ addComponents }: any) => {
-        addComponents({
-          ...customPalette,
-          ...fontStyles,
-          '.whitespace-pre-wrap': { whiteSpace: 'pre-wrap' },
-          '.break-all': { wordBreak: 'break-all' },
-          '.keep-all': { wordBreak: 'keep-all' },
-          '.pause': { animationPlayState: 'paused' },
-          '.text-ellipsis-1': {
-            display: '-webkit-box',
-            wordBreak: 'break-word',
-            wordWrap: 'break-word',
-            '-webkit-line-clamp': '1',
-            '-webkit-box-orient': 'vertical',
-          },
-          '.text-ellipsis-2': {
-            display: '-webkit-box',
-            wordBreak: 'break-word',
-            wordWrap: 'break-word',
-            '-webkit-line-clamp': '2',
-            '-webkit-box-orient': 'vertical',
-          },
-          '.text-ellipsis-3': {
-            display: '-webkit-box',
-            wordBreak: 'break-word',
-            wordWrap: 'break-word',
-            '-webkit-line-clamp': '3',
-            '-webkit-box-orient': 'vertical',
-          },
-        });
-      }),
-    ],
   },
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('tailwind-scrollbar-hide'),
+    plugin(({ addComponents }: any) => {
+      addComponents({
+        ...customPalette,
+        ...fontStyles,
+        '.whitespace-pre-wrap': { whiteSpace: 'pre-wrap' },
+        '.break-all': { wordBreak: 'break-all' },
+        '.keep-all': { wordBreak: 'keep-all' },
+        '.pause': { animationPlayState: 'paused' },
+        '.text-ellipsis-1': {
+          display: '-webkit-box',
+          wordBreak: 'break-word',
+          wordWrap: 'break-word',
+          '-webkit-line-clamp': '1',
+          '-webkit-box-orient': 'vertical',
+        },
+        '.text-ellipsis-2': {
+          display: '-webkit-box',
+          wordBreak: 'break-word',
+          wordWrap: 'break-word',
+          '-webkit-line-clamp': '2',
+          '-webkit-box-orient': 'vertical',
+        },
+        '.text-ellipsis-3': {
+          display: '-webkit-box',
+          wordBreak: 'break-word',
+          wordWrap: 'break-word',
+          '-webkit-line-clamp': '3',
+          '-webkit-box-orient': 'vertical',
+        },
+      });
+    }),
+  ],
 };
