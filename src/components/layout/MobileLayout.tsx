@@ -11,9 +11,9 @@ export default function MobileLayout({
 }: MobileLayoutProps) {
   return (
     <div className="surface_primary">
-      <div className="relative max-w-mobile mx-auto mb-[24px] min-h-screen surface_primary">
+      <div className="relative w-full mx-auto min-h-screen surface_primary">
         {header && header}
-        <main className="py-[20px] px-[16px]">{children}</main>
+        <main>{children}</main>
         {footer && footer}
       </div>
     </div>
