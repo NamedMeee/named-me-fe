@@ -59,7 +59,7 @@ export default function Main() {
           </div>
         </div>
         <div className="grid grid-cols-2 flex items-center justify-center border-[1px] border-[#BFBFBF] rounded-[8px] mb-[10px] min-h-[178px]">
-          <div className="p-4 bg-[#D9D9D9] text-center h-full pt-[60px]">
+          <div className="p-4 bg-[#D9D9D9] text-center h-full pt-[62px]">
             <div className="flex justify-center">
               <PhotoEmoji />
             </div>
