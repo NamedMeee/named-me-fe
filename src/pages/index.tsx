@@ -46,26 +46,44 @@ export default function Main() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center w-full bg-[#303030] min-h-[158px] rounded-[8px] mt-[48px] mb-[10px]">
-          <PinEmoji />
-          <div className="text-white font-normal	font-[12px]">
-            중요한 공지 사항을 등록해보세요 <StarEmoji />
+        <div className="w-full bg-[#303030] min-h-[158px] rounded-[8px] mt-[48px] mb-[10px] p-4">
+          <div>
+            <PinEmoji />
+          </div>
+          <div className="text-white font-normal text-[14px] text-center">
+            중요한 공지 사항을 <br />
+            등록해보세요 ✨
+          </div>
+          <div className="flex justify-center mt-[10px]">
             <PlusWhite />
           </div>
         </div>
         <div className="grid grid-cols-2 flex items-center justify-center border-[1px] border-[#BFBFBF] rounded-[8px] mb-[10px] min-h-[178px]">
-          <div className="bg-[#D9D9D9] w-full h-full">
-            <PhotoEmoji />
-            <PlusBlack />
+          <div className="p-4 bg-[#D9D9D9] text-center h-full pt-[60px]">
+            <div className="flex justify-center">
+              <PhotoEmoji />
+            </div>
+            <div className="flex justify-center mt-[20px]">
+              <PlusBlack />
+            </div>
           </div>
-          <div className="text-[#545454] font-normal font-[12px]">
-            자신을 소개하는 글을 써보세요 <TextEmoji />
-            <PlusBlack />
+          <div className="p-4 text-[#545454] font-normal text-[14px] text-center">
+            자신을 <br />
+            소개하는 글을
+            <br /> 써보세요 📝
+            <div className="flex justify-center mt-[10px]">
+              <PlusBlack />
+            </div>
           </div>
         </div>
-        <div className="text-[#545454] font-normal font-[12px] flex items-center justify-center border-[1px] border-[#BFBFBF] rounded-[8px] min-h-[158px] border-dashed">
-          더 알리고 싶은 내용이 있나요? <SearchEmoji />
-          <PlusBlack />
+        <div className="p-4 text-[#545454] font-normal text-[14px] text-center border-[1px] border-[#BFBFBF] rounded-[8px] min-h-[158px] border-dashed">
+          <div className="pt-[20px]">
+            더 알리고 싶은 <br />
+            내용이 있나요? 🔍
+            <div className="flex justify-center mt-[10px]">
+              <PlusBlack />
+            </div>
+          </div>
         </div>
       </div>
     </MobileLayout>
