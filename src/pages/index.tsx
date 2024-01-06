@@ -5,9 +5,6 @@ import MobileLayout from '@components/layout/MobileLayout';
 import PinEmoji from '@assets/svgs/PinEmoji.svg';
 import ProfileEmoji from '@assets/svgs/ProfileEmoji.svg';
 import PhotoEmoji from '@assets/svgs/PhotoEmoji.svg';
-import TextEmoji from '@assets/svgs/TextEmoji.svg';
-import StarEmoji from '@assets/svgs/StarEmoji.svg';
-import SearchEmoji from '@assets/svgs/SearchEmoji.svg';
 
 import ShareIcon from '@assets/svgs/ShareIcon.svg';
 import MoreIcon from '@assets/svgs/MoreIcon.svg';
