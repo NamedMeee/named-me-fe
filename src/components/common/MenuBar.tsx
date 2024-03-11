@@ -1,4 +1,4 @@
-import Logo from '@assets/svgs/Logo.svg';
+import Logo from '@assets/svgs/SmallLogo.svg';
 
 export default function MenuBar() {
   return (
