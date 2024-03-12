@@ -1,6 +1,7 @@
 import MobileLayout from '@components/layout/MobileLayout';
 
 import SmallLogo from '@assets/svgs/SmallLogo.svg';
+import { Button } from '@components/common';
 
 export default function Main() {
   return (
@@ -33,11 +34,10 @@ export default function Main() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button className="mt-[48px] w-[320px] items-center w-full bg-[#000000] text-white rounded-[6px] py-[16px]">
-          {' '}
-          로그인
-        </button>
+      <Button text="로그인" buttonStyles={'mt-[48px] w-[320px]'} />
+      <div className="gap-y-[12px]">
+        <Button text="로그인" buttonStyles={'w-[320px]'} />
+        <Button text="로그인" buttonStyles={'w-[320px]'} />
       </div>
     </MobileLayout>
   );
