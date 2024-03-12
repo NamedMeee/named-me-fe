@@ -5,37 +5,29 @@ import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
 import TwitterLogo from '@assets/svgs/TwitterLogo.svg';
 
 import { Button } from '@components/common';
+import Input from '@components/common/Input';
 
-export default function LoginMain() {
+export default function EmailLogin() {
   return (
     <MobileLayout>
       <div className="flex justify-center mt-[50px]">
         <SmallLogo />
       </div>
       <div className="text-center font_display_bold_sm mt-[8px]">로그인</div>
-      <div className="flex justify-center">
-        <div>
-          <div className="mt-[36px] w-[320px] items-center w-full">
-            <div className="font_label_bold_lg mb-[6px]">이메일</div>
-            <input
-              className="border border-[#D5D5D5] font_label_regular_lg rounded-[6px] px-[18px] py-[18px] w-full"
-              type="text"
-              placeholder="가입한 이메일을 입력해주세요."
-            />
-          </div>
-        </div>
+      <div className="flex justify-center mt-[36px]">
+        <Input
+          width={320}
+          labelText="이메일"
+          placeholder="가입하신 이메일을 입력해 주세요."
+        />
       </div>
-      <div className="flex justify-center">
-        <div>
-          <div className="mt-[24px] w-[320px] items-center w-full">
-            <div className="font_label_bold_lg mb-[6px]">비밀번호</div>
-            <input
-              className="border border-[#D5D5D5] font_label_regular_lg rounded-[6px] px-[18px] py-[18px] w-full"
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-            />
-          </div>
-        </div>
+      <div className="flex justify-center mt-[24px]">
+        <Input
+          width={320}
+          labelText="비밀번호"
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
+        />
       </div>
       <div className="flex justify-center">
         <div className="w-[320px]">
