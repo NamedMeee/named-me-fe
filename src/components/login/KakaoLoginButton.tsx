@@ -1,10 +1,20 @@
 import { Button } from '@components/common';
 
 import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
+import { useRouter } from 'next/router';
 
-export default function KakaoLoginButton() {
+export default function kakaoLoginButton() {
+  const router = useRouter();
+
+  const kakaoLogin = () => {
+    window.Kakao.Auth.authorize({
+      redirectUri: `${location.origin}/login/kakao-login`,
+    });
+  };
+
   return (
     <Button
+      onClick={kakaoLogin}
       buttonColor="bg-[#FEEA2A]"
       text={
         <div className="flex justify-center items-center gap-x-[6px]">

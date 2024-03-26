@@ -3,6 +3,7 @@ interface ButtonProps {
   buttonColor?: string;
   textColor?: string;
   border?: boolean;
+  onClick?: () => void;
   text: string | React.ReactNode;
 }
 
@@ -11,11 +12,13 @@ export default function Button({
   buttonColor,
   textColor,
   text,
+  onClick,
   border = false,
 }: ButtonProps) {
   return (
     <div className="flex justify-center">
       <button
+        onClick={onClick}
         className={`${
           border && 'border'
         } ${buttonStyles} font_label_medium_lg items-center w-full ${
