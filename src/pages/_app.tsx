@@ -4,6 +4,7 @@ import './globals.css';
 import { AppProps } from 'next/app';
 import Script from 'next/script';
 import KakaoLoginAccess from '@components/head/KakaoLoginAccess';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,11 +19,16 @@ declare global {
   }
 }
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <>
-      <KakaoLoginAccess />
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <KakaoLoginAccess />
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }
