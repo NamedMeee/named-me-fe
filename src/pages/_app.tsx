@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { AppProps } from 'next/app';
-import Script from 'next/script';
 import KakaoLoginAccess from '@components/head/KakaoLoginAccess';
 import { SessionProvider } from 'next-auth/react';
 

@@ -1,7 +1,10 @@
 import { Button } from '@components/common';
 import TwitterLogo from '@assets/svgs/TwitterLogo.svg';
+import { signIn, useSession } from 'next-auth/react';
 
 export default function TwitterLoginButton() {
+  const { data: session } = useSession();
+
   return (
     <Button
       buttonColor="bg-[#5A9BE7]"
@@ -12,6 +15,9 @@ export default function TwitterLoginButton() {
         </div>
       }
       buttonStyles="mb-[12px]"
+      onClick={() => {
+        !session && signIn();
+      }}
     />
   );
 }
