@@ -3,7 +3,7 @@ import { Button } from '@components/common';
 import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
 import { useRouter } from 'next/router';
 
-export default function kakaoLoginButton() {
+export default function KakaoLoginButton() {
   const router = useRouter();
 
   const kakaoLogin = () => {
