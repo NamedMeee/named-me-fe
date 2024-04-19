@@ -5,7 +5,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    image: ${REGISTRY_HOST}/named-me-fe/named-web-nginx
+    image: ${REGISTRY_HOST}/named-web-nginx
     ports:
       - '80:80'
     depends_on:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./node
       dockerfile: Dockerfile
-    image: ${REGISTRY_HOST}/named-me-fe/named-web-node
+    image: ${REGISTRY_HOST}/named-web-node
     ports:
       - '8000:8000'
   next:
@@ -24,7 +24,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: ${REGISTRY_HOST}/named-me-fe/named-web-next
+    image: ${REGISTRY_HOST}/named-web-next
     volumes:
       - './next:/usr/next'
       - '/usr/node_modules'
