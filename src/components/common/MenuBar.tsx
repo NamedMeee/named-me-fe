@@ -2,8 +2,8 @@ import Logo from '@assets/svgs/SmallLogo.svg';
 import ToggleSwitch from './ToggleSwitch';
 import { useState } from 'react';
 
-export default function MenuBar() {
-  const [isToggle, setIsToggle] = useState<boolean>(false);
+export default function OnwerMenuBar() {
+  const [isToggle, setIsToggle] = useState<boolean>(true);
 
   return (
     <div className="w-full bg-white shadow-md justify-center flex">

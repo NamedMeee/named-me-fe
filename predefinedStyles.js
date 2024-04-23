@@ -1,7 +1,9 @@
 const colorPalette = {
   black: '#000000',
-  gray_10: '#FAFAFB',
-  gray_50: '#F3F3F4',
+  main_color: '#4DBFFF',
+  gray_normal: '#646464',
+  gray_10: '#2F2F2F',
+  gray_50: '#BCBCBC',
   gray_100: '#E6E6E7',
   gray_200: '#CCCCCD',
   gray_300: '#B9B9BB',
@@ -89,8 +91,9 @@ const surfaceColors = {
 };
 
 const contentColors = {
-  content_primary: 'gray_900',
-  content_secondary: 'gray_800',
+  content_normal: 'gray_normal',
+  content_primary: 'gray_10',
+  content_secondary: 'main_color',
   content_tertiary: 'gray_600',
   content_quaternary: 'gray_500',
   content_disabled: 'gray_300',

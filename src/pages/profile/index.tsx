@@ -1,4 +1,3 @@
-import MenuBar from '@components/common/MenuBar';
 import MobileLayout from '@components/layout/MobileLayout';
 
 //Alert Text
@@ -11,20 +10,28 @@ import MoreIcon from '@assets/svgs/MoreIcon.svg';
 
 import PlusBlack from '@assets/svgs/PlusBlack.svg';
 import PlusWhite from '@assets/svgs/PlusWhite.svg';
+import OnwerMenuBar from '@components/common/MenuBar';
+import SelectTab from '@components/profile/SelectTab';
+import { useState } from 'react';
+
+export type TabType = 'PROFILE' | 'QUESTION';
 
 export default function Main() {
+  const [currentTab, setCurrentTab] = useState<TabType>('PROFILE');
+
   return (
-    <MobileLayout header={<MenuBar />}>
+    <MobileLayout header={<OnwerMenuBar />}>
       <div className="px-[24px]">
         <div className="flex justify-center item-center grid grid-cols-2 mt-[28px]">
-          <div className="w-[142px] h-[142px] rounded-full bg-[#D9D9D9] flex items-center justify-center border-[1px] border-[#BFBFBF]">
+          <div className="w-[142px] h-[142px] shadow-md rounded-full bg-white flex items-center justify-center border-[1px] border-[#F2F2F2]">
             <div className="text-center">
-              <div className="flex items-center justify-center mb-[4px]">
+              <div className="flex items-center justify-center mb-[6px]">
                 <ProfileEmoji />
               </div>
-              <div className="text-center text-[#545454] text-[14px] leading-4">
-                프로필 <br />
-                사진 넣기
+              <div className="text-center content_normal text-[12px] leading-4">
+                프로필 사진
+                <br />
+                설정하기
               </div>
             </div>
           </div>
@@ -35,12 +42,11 @@ export default function Main() {
               </div>
               <MoreIcon />
             </div>
-            <div className="text-right text-[#545454] font-extrabold tracking-tight text-[20px]">
-              <div className="text-[14px]">@emtpy0040_56</div>
-              <div>ALERT</div>
-              <div className="text-[#BCBCBC]">MOMENT</div>
-              <div className="text-[#BCBCBC]">COMMENT</div>
-            </div>
+            <SelectTab
+              userId={'test_id_ishere'}
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
+            />
           </div>
         </div>
         <div className="w-full bg-[#303030] min-h-[158px] rounded-[8px] mt-[48px] mb-[10px] p-4">
@@ -64,7 +70,7 @@ export default function Main() {
               <PlusBlack />
             </div>
           </div>
-          <div className="p-4 text-[#545454] font-normal text-[14px] text-center">
+          <div className="p-4 font-normal text-[14px] text-center">
             자신을 <br />
             소개하는 글을
             <br /> 써보세요 📝
@@ -73,7 +79,7 @@ export default function Main() {
             </div>
           </div>
         </div>
-        <div className="p-4 text-[#545454] font-normal text-[14px] text-center border-[1px] border-[#BFBFBF] rounded-[8px] min-h-[158px] border-dashed">
+        <div className="p-4 font-normal text-[14px] text-center border-[1px] border-[#BFBFBF] rounded-[8px] min-h-[158px] border-dashed">
           <div className="pt-[20px]">
             더 알리고 싶은 <br />
             내용이 있나요? 🔍
