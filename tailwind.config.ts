@@ -8,7 +8,7 @@ const {
 } = require('./predefinedStyles');
 const desktopGridWidth = '944px';
 const mobileWidth = '500px';
-const mainWidth = '720px';
+const mainWidth = '520px';
 
 module.exports = {
   mode: 'jit',

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import ProfileImageBox from '@components/profile/inputBox/ProfileImageBox';
 import ShareButton from '@components/profile/ShareButton';
 import SettingButton from '@components/profile/SettingButton';
+import AddBox from '@components/profile/inputBox/AddBox';
 
 export type TabType = 'PROFILE' | 'QUESTION';
 
@@ -20,7 +21,7 @@ export default function Profile() {
   return (
     <MobileLayout header={<OnwerMenuBar />}>
       <div className="px-[24px]">
-        <div className="flex justify-center item-center grid grid-cols-2 mt-[28px]">
+        <div className="flex justify-center item-center grid grid-cols-2 mt-[28px] mb-[32px]">
           <ProfileImageBox />
           <div>
             <div className="flex justify-end item-center mb-[24px] gap-[10px] mr-[-10px]">
@@ -34,6 +35,7 @@ export default function Profile() {
             />
           </div>
         </div>
+        <AddBox />
         {/** 
         <AlertBox />
         <PhotoBox />

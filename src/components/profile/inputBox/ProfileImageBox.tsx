@@ -7,7 +7,7 @@ export default function ProfileImageBox() {
         <div className="flex items-center justify-center mb-[6px]">
           <ProfileEmoji />
         </div>
-        <div className="text-center content_normal text-[12px] leading-4">
+        <div className="text-center content_normal text-[12px] leading-4 font-light tracking-tight">
           프로필 사진
           <br />
           설정하기
