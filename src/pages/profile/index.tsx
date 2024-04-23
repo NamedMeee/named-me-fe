@@ -12,6 +12,7 @@ import SelectTab from '@components/profile/SelectTab';
 import { useState } from 'react';
 import AlertBox from '@components/profile/inputBox/AlertBox';
 import PhotoBox from '@components/profile/inputBox/PhotoBox';
+import TextBox from '@components/profile/inputBox/TextBox';
 
 export type TabType = 'PROFILE' | 'QUESTION';
 
