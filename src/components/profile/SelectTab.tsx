@@ -17,7 +17,7 @@ export default function SelectTab({
 
   return (
     <div className="text-right font-extrabold text-[24px] tracking-tight">
-      <div className="text-[16px] content_primary">@{userId}</div>
+      <div className="text-[16px] content_primary mb-[4px]">@{userId}</div>
       <div
         className={`cursor-pointer ${
           currentTab === 'PROFILE' ? 'content_secondary' : 'content_disabled'
