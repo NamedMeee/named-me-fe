@@ -13,7 +13,7 @@ export default function MobileLayout({
     <div className="surface_primary">
       <div className="relative w-full mx-auto min-h-screen surface_primary">
         {header && header}
-        <main className="relative mx-auto min-h-screen max-w-[720px]">
+        <main className="relative mx-auto min-h-screen max-w-[520px]">
           {children}
         </main>
         {footer && footer}

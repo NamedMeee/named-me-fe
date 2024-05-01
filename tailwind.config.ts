@@ -8,7 +8,7 @@ const {
 } = require('./predefinedStyles');
 const desktopGridWidth = '944px';
 const mobileWidth = '500px';
-const mainWidth = '720px';
+const mainWidth = '520px';
 
 module.exports = {
   mode: 'jit',
@@ -39,6 +39,7 @@ module.exports = {
         'desktop-grid': desktopGridWidth,
       },
       boxShadow: {
+        md: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
         s: '0px 2px 8px rgba(0, 0, 0, 0.08)',
         menu: '0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16)',
       },
