@@ -5,10 +5,10 @@ import {
   SignUpPayloadType,
 } from './type';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 
 export const signInEmail = async ({ email, password }: SignInPayloadType) => {
-  const { data } = await axios.post(`/api/v1/auth/signin`);
+  const { data } = await axios.post(`/auth/signin`, { email, password });
 
   return data;
 };
@@ -18,14 +18,15 @@ export const signUpEmail = async ({
   password,
   name,
 }: SignUpPayloadType) => {
-  const { data } = await axios.post(`/api/v1/auth/signin`);
+  const { data } = await axios.post(`/auth/signin`, { email, password, name });
 
   return data;
 };
 
 export const signUpPreCheck = async ({ email, name }: PreCheckParamType) => {
+  //email, name 각각 or 같이 가능한지 (오류 메세지 처리 되어 있는지 궁금함)
   const { data } = await axios.get(
-    `/api/v1/auth/pre-check?email=${email}&name=${name}}`,
+    `/auth/pre-check?email=${email}&name=${name}}`,
   );
 
   return data;

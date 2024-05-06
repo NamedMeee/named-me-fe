@@ -10,6 +10,8 @@ services:
       - '80:80'
     depends_on:
       - node
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
   node:
     container_name: 'node'
     build:
@@ -18,16 +20,3 @@ services:
     image: ${REGISTRY_HOST}/named-web-node
     ports:
       - '8000:8000'
-  next:
-    container_name: 'next'
-    restart: 'on-failure'
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: ${REGISTRY_HOST}/named-web-next
-    volumes:
-      - './next:/usr/next'
-      - '/usr/node_modules'
-      - '/usr/.next'
-    ports:
-      - '3000:3000'

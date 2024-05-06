@@ -14,7 +14,6 @@ export default function KakaoLogin() {
   }, [code]);
 
   const socialLogin = async (userData: any) => {
-    console.log(userData);
     alert('카카오 로그인 성공!');
 
     router.replace('/');
