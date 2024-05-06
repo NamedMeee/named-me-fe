@@ -6,65 +6,24 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/userLoginStore';
-import { useEffect, useState } from 'react';
-import { loginInputValidation } from 'validation/loginValidation';
+import useHandleLoginUser from 'hooks/useHandleLoginUser';
+import useCheckPasswords from 'hooks/useCheckPasswords';
 
 export default function EmailLogin() {
   //페이지를 들어올 경우 email, name, password state 초기화하기
 
-  const {
-    setEmail,
-    firstPassword,
-    setFirstPassword,
-    setPassword,
-    setName,
-    email,
-    name,
-    password,
-  } = useUserLoginStore();
-
-  const { emailError, firstPasswordError, nameError, passwordError, setError } =
+  const { firstPassword, email, name, password } = useUserLoginStore();
+  const { emailError, firstPasswordError, nameError, passwordError } =
     useUserLoginErrorStore();
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e);
-    setError('emailError', loginInputValidation('email', email));
-  };
+  const {
+    handleChangeEmail,
+    handleChangeFirstPassword,
+    handleChangeName,
+    handleChangePassword,
+  } = useHandleLoginUser();
 
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e);
-    setError('nameError', loginInputValidation('name', name));
-  };
-
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e);
-    setError('passwordError', loginInputValidation('password', password));
-  };
-
-  const handleChangeFirstPassword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setFirstPassword(e);
-    setError(
-      'firstPasswordError',
-      loginInputValidation('firstPasswordError', { firstPassword, password }),
-    );
-  };
-
-  useEffect(() => {
-    if (password !== firstPassword) {
-      setError('firstPasswordError', {
-        error: true,
-        errorMessage: '비밀번호가 일치하지 않습니다.',
-      });
-      setError('password', { error: true, errorMessage: '' });
-
-      return;
-    }
-
-    setError('firstPasswordError', { error: false, errorMessage: '' });
-    setError('password', { error: false, errorMessage: '' });
-  }, [password, firstPassword]);
+  useCheckPasswords();
 
   return (
     <LoginMainLayout>

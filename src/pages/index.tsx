@@ -5,30 +5,18 @@ import TwitterLoginButton from '@components/login/TwitterLoginButton';
 import EmailLoginButton from '@components/login/EmailLoginButton';
 import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import LoginMainLayout from '@components/layout/LoginMainLayout';
-import { useEffect, useState } from 'react';
-import { useUserLoginErrorStore } from '@zustand/userLoginStore';
 import {
-  defaultErrorState,
-  loginInputValidation,
-} from 'validation/loginValidation';
+  useUserLoginErrorStore,
+  useUserLoginStore,
+} from '@zustand/userLoginStore';
+import useHandleLoginUser from 'hooks/useHandleLoginUser';
 
 export default function EmailLogin() {
   //페이지를 들어올 경우 email, name, password state 초기화하기
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const { emailError, passwordError, setError } = useUserLoginErrorStore();
-
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setError('emailError', loginInputValidation('email', email));
-  };
-
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setError('passwordError', loginInputValidation('password', password));
-  };
+  const { email, password } = useUserLoginStore();
+  const { emailError, passwordError } = useUserLoginErrorStore();
+  const { handleChangeEmail, handleChangePassword } = useHandleLoginUser();
 
   return (
     <LoginMainLayout>
