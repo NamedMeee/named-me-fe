@@ -17,6 +17,7 @@ export default function Input({
         className="mt-[6px] border border-[#D5D5D5] font_label_regular_lg rounded-[6px] px-[16px] py-[16px] w-full"
         type={inputProps.type || 'text'}
         placeholder={inputProps.placeholder}
+        value={inputProps.value}
       />
     </div>
   );

@@ -15,11 +15,7 @@ export default function EmailLogin() {
         <Input labelText="이메일" placeholder="sample@email.com" />
       </div>
       <div className="mt-[24px]">
-        <Input
-          labelText="아이디 (닉네임)"
-          type="password"
-          placeholder="@my_nickname"
-        />
+        <Input labelText="아이디 (닉네임)" placeholder="@my_nickname" />
       </div>
       <div className="mt-[36px]">
         <Input
