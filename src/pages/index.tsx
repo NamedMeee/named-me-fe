@@ -34,6 +34,8 @@ export default function EmailLogin() {
           labelText="비밀번호"
           type="password"
           placeholder="비밀번호를 입력해주세요."
+          error={true}
+          errorMessage="비밀번호가 일치하지 않습니다. 다시 입력해주세요."
         />
       </div>
       <div className="flex justify-center">
