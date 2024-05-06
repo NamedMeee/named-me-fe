@@ -13,6 +13,8 @@ import {
 } from 'validation/loginValidation';
 
 export default function EmailLogin() {
+  //페이지를 들어올 경우 email, name, password state 초기화하기
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +22,7 @@ export default function EmailLogin() {
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    setError('emailError', defaultErrorState);
+    setError('emailError', loginInputValidation('email', email));
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
