@@ -1,23 +1,30 @@
 import { Button } from '@components/common';
-import { signInEmail } from 'pages/api/login/login';
+import { signInEmail, signUpEmail } from 'pages/api/login/login';
+import { useUserLoginStore } from '@zustand/userLoginStore';
+import { stat } from 'fs';
+import { useRouter } from 'next/router';
 
-interface SubmitSignUpButtonProps {
-  email: string;
-  password: string;
-}
+export default function SubmitSignUpButton() {
+  const router = useRouter();
+  const { email, name, password } = useUserLoginStore();
 
-export default function SubmitSignUpButton({}) {
-  const handleClickLoginButton = () => {
+  const handleClickSignUpButton = async () => {
     try {
-      const data = signInEmail({ email: 'admin1', password: 'admin1' });
-    } catch (e) {
-      alert('로그인 과정에서 문제가 발생하였습니다.');
+      const { token, status } = await signUpEmail({ email, name, password });
+
+      if (status === 201) {
+        sessionStorage.setItem('namedme_token', token);
+        router.push('/profile');
+      }
+    } catch (e: any) {
+      console.log(e);
+      alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
     }
   };
 
   return (
     <Button
-      onClick={handleClickLoginButton}
+      onClick={handleClickSignUpButton}
       text="입력 완료"
       buttonStyles={'mb-[20px] mt-[42px] w-full'}
     />

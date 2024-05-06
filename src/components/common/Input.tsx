@@ -18,6 +18,7 @@ export default function Input({
         type={inputProps.type || 'text'}
         placeholder={inputProps.placeholder}
         value={inputProps.value}
+        onChange={inputProps.onChange}
       />
     </div>
   );

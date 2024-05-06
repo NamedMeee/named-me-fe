@@ -7,16 +7,24 @@ type State = {
 };
 
 export type Action = {
-  setEmail: (email: string) => void;
-  setName: (name: string) => void;
-  setPassword: (password: string) => void;
+  setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const useUserLoginStore = create<State & Action>((set) => ({
   email: '',
   name: '',
   password: '',
-  setPassword: (password: string) => set({ password }),
-  setEmail: (email: string) => set({ email }),
-  setName: (name: string) => set({ name }),
+  setPassword: (e: React.ChangeEvent<HTMLInputElement>) =>
+    set({ password: e.target.value }),
+  setEmail: (e: React.ChangeEvent<HTMLInputElement>) =>
+    set({ email: e.target.value }),
+  setName: (e: React.ChangeEvent<HTMLInputElement>) =>
+    set({ name: e.target.value }),
 }));
+
+export const useUserLoginCurrentState = () => {
+  const { email, name, password } = useUserLoginStore();
+  return { email, name, password };
+};
