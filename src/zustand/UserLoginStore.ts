@@ -1,18 +1,27 @@
 import { create } from 'zustand';
 
-type State = {
+export type ValidationResult = {
+  error: boolean;
+  errorMessage?: string;
+};
+
+type LoginState = {
   email: string;
   name: string;
   password: string;
-};
-
-export type Action = {
   setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setName: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const useUserLoginStore = create<State & Action>((set) => ({
+export type ErrorState = {
+  emailError: ValidationResult;
+  nameError: ValidationResult;
+  passwordError: ValidationResult;
+  setError: (errorField: string, error: ValidationResult) => void;
+};
+
+export const useUserLoginStore = create<LoginState>((set) => ({
   email: '',
   name: '',
   password: '',
@@ -24,7 +33,13 @@ export const useUserLoginStore = create<State & Action>((set) => ({
     set({ name: e.target.value }),
 }));
 
-export const useUserLoginCurrentState = () => {
-  const { email, name, password } = useUserLoginStore();
-  return { email, name, password };
-};
+export const useUserLoginErrorStore = create<ErrorState>((set) => ({
+  emailError: { error: false, message: '' },
+  nameError: { error: false, message: '' },
+  passwordError: { error: false, message: '' },
+  setError: (errorField: string, errorState: ValidationResult) =>
+    set((state: ErrorState) => ({
+      ...state,
+      [errorField]: errorState,
+    })),
+}));

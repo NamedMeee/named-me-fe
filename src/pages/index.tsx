@@ -5,16 +5,28 @@ import TwitterLoginButton from '@components/login/TwitterLoginButton';
 import EmailLoginButton from '@components/login/EmailLoginButton';
 import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import LoginMainLayout from '@components/layout/LoginMainLayout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useUserLoginErrorStore } from '@zustand/userLoginStore';
+import {
+  defaultErrorState,
+  loginInputValidation,
+} from 'validation/loginValidation';
 
 export default function EmailLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const { emailError, passwordError, setError } = useUserLoginErrorStore();
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setError('emailError', defaultErrorState);
+  };
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    setError('passwordError', loginInputValidation('password', password));
+  };
 
   return (
     <LoginMainLayout>
@@ -25,6 +37,8 @@ export default function EmailLogin() {
           onChange={handleChangeEmail}
           labelText="이메일"
           placeholder="가입하신 이메일을 입력해 주세요."
+          error={emailError.error}
+          errorMessage={emailError.errorMessage}
         />
       </div>
       <div className="mt-[24px]">
@@ -34,8 +48,8 @@ export default function EmailLogin() {
           labelText="비밀번호"
           type="password"
           placeholder="비밀번호를 입력해주세요."
-          error={true}
-          errorMessage="비밀번호가 일치하지 않습니다. 다시 입력해주세요."
+          error={passwordError.error}
+          errorMessage={passwordError.errorMessage}
         />
       </div>
       <div className="flex justify-center">

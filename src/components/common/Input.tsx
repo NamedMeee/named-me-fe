@@ -19,8 +19,8 @@ export default function Input({
       <label className="font_label_bold_lg">{labelText}</label>
       <input
         className={`mt-[6px] border ${
-          error ? 'border_negative_active' : 'border_oridinary'
-        } font_label_regular_lg rounded-[6px] px-[16px] py-[16px] w-full`}
+          error ? 'border_negative_active border-[2px]' : 'border_oridinary'
+        } font_label_regular_lg rounded-[6px] px-[14px] py-[14px] w-full`}
         type={inputProps.type || 'text'}
         placeholder={inputProps.placeholder}
         value={inputProps.value}

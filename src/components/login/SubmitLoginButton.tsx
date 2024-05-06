@@ -1,6 +1,9 @@
 import { Button } from '@components/common';
+import { useUserLoginErrorStore } from '@zustand/userLoginStore';
 import { useRouter } from 'next/router';
 import { signInEmail } from 'pages/api/login/login';
+import { useEffect } from 'react';
+import { loginInputValidation } from 'validation/loginValidation';
 
 interface SubmitLoginButtonProps {
   email: string;
@@ -12,10 +15,23 @@ export default function SubmitLoginButton({
   password,
 }: SubmitLoginButtonProps) {
   const router = useRouter();
+  const { emailError, passwordError, setError } = useUserLoginErrorStore();
+
+  const checkEmailValidation = () => {
+    const emailError = loginInputValidation('email', email);
+    const passwordError = loginInputValidation('password', password);
+
+    setError('emailError', emailError);
+    setError('passwordError', passwordError);
+
+    return emailError.error || passwordError.error;
+  };
 
   const handleClickLoginButton = async () => {
-    if (!email || !password) {
-      return alert('이메일과 비밀번호를 입력해주세요.');
+    const validationError = checkEmailValidation();
+
+    if (validationError) {
+      return;
     }
 
     try {
