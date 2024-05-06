@@ -1,5 +1,5 @@
 import Input from '@components/common/Input';
-import SubmitLoginButton from '@components/login/SubmitLoginButton';
+import SubmitLoginButton from '@components/login/SubmitSignUpButton';
 import KakaoLoginButton from '@components/login/KakaoLoginButton';
 import TwitterLoginButton from '@components/login/TwitterLoginButton';
 import EmailLoginButton from '@components/login/EmailLoginButton';
@@ -26,7 +26,7 @@ export default function EmailLogin() {
       <div className="flex justify-center">
         <div className="w-[320px]">
           <SubmitLoginButton />
-          <div className="relative border-b-[1px] border_disabled mb-[24px] pb-[24px]">
+          <div className="relative mb-[24px] pb-[24px]">
             <div className="flex justify-center">
               <div className="content_tertiary w-full absolute p-4 bg-white w-[118px] font_label_regular_sm text-center">
                 계정이 없다면 🥹

@@ -8,9 +8,11 @@ import {
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 
 export const signInEmail = async ({ email, password }: SignInPayloadType) => {
-  const { data } = await axios.post(`/auth/signin`, { email, password });
+  const result = await axios.post(`/auth/signin`, { email, password });
 
-  return data;
+  console.log(result);
+
+  return result.data;
 };
 
 export const signUpEmail = async ({
