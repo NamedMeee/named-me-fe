@@ -1,4 +1,5 @@
 import { Button } from '@components/common';
+import { useRouter } from 'next/router';
 import { signInEmail } from 'pages/api/login/login';
 
 interface SubmitLoginButtonProps {
@@ -6,10 +7,27 @@ interface SubmitLoginButtonProps {
   password: string;
 }
 
-export default function SubmitLoginButton({}) {
-  const handleClickLoginButton = () => {
+export default function SubmitLoginButton({
+  email,
+  password,
+}: SubmitLoginButtonProps) {
+  const router = useRouter();
+
+  const handleClickLoginButton = async () => {
+    if (!email || !password) {
+      return alert('이메일과 비밀번호를 입력해주세요.');
+    }
+
     try {
-      const data = signInEmail({ email: 'admin1', password: 'admin1' });
+      const { token } = await signInEmail({
+        email,
+        password,
+      });
+
+      if (token) {
+        sessionStorage.setItem('namedme_token', token);
+        router.push('/profile');
+      }
     } catch (e) {
       alert('로그인 과정에서 문제가 발생하였습니다.');
     }

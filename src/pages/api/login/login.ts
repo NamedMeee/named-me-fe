@@ -10,7 +10,10 @@ axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 export const signInEmail = async ({ email, password }: SignInPayloadType) => {
   const result = await axios.post(`/auth/signin`, { email, password });
 
-  return result.data;
+  const token = result.data.token;
+  const status = result.status;
+
+  return { token, status };
 };
 
 export const signUpEmail = async ({

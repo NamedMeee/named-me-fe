@@ -1,7 +1,6 @@
 import { Button } from '@components/common';
-import { signInEmail, signUpEmail } from 'pages/api/login/login';
+import { signUpEmail } from 'pages/api/login/login';
 import { useUserLoginStore } from '@zustand/userLoginStore';
-import { stat } from 'fs';
 import { useRouter } from 'next/router';
 
 export default function SubmitSignUpButton() {
@@ -12,12 +11,11 @@ export default function SubmitSignUpButton() {
     try {
       const { token, status } = await signUpEmail({ email, name, password });
 
-      if (status === 201) {
+      if (token) {
         sessionStorage.setItem('namedme_token', token);
         router.push('/profile');
       }
     } catch (e: any) {
-      console.log(e);
       alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
     }
   };
