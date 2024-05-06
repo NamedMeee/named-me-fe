@@ -8,10 +8,9 @@ import {
 } from '@zustand/userLoginStore';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useCheckPasswords from 'hooks/useCheckPasswords';
+import useInitLoginUser from 'hooks/useInitLoginUser';
 
 export default function EmailLogin() {
-  //페이지를 들어올 경우 email, name, password state 초기화하기
-
   const { firstPassword, email, name, password } = useUserLoginStore();
   const { emailError, firstPasswordError, nameError, passwordError } =
     useUserLoginErrorStore();
@@ -23,6 +22,7 @@ export default function EmailLogin() {
     handleChangePassword,
   } = useHandleLoginUser();
 
+  useInitLoginUser();
   useCheckPasswords();
 
   return (

@@ -7,36 +7,36 @@ import { loginInputValidation } from 'validation/loginValidation';
 export default function useHandleLoginUser() {
   const {
     setEmail,
-    firstPassword,
-    setFirstPassword,
-    setPassword,
     setName,
+    setPassword,
+    setFirstPassword,
     email,
     name,
     password,
+    firstPassword,
   } = useUserLoginStore();
 
   const { setError } = useUserLoginErrorStore();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e);
+    setEmail(e.target.value);
     setError('emailError', loginInputValidation('email', email));
   };
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e);
+    setName(e.target.value);
     setError('nameError', loginInputValidation('name', name));
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e);
+    setPassword(e.target.value);
     setError('passwordError', loginInputValidation('password', password));
   };
 
   const handleChangeFirstPassword = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setFirstPassword(e);
+    setFirstPassword(e.target.value);
     setError(
       'firstPasswordError',
       loginInputValidation('firstPasswordError', { firstPassword, password }),
