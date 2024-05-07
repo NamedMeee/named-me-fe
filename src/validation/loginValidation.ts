@@ -1,5 +1,4 @@
 import { ValidationResult } from '@zustand/userLoginStore';
-import { error } from 'console';
 
 export const defaultErrorState = {
   error: false,

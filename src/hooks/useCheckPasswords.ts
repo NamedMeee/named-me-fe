@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
+
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/userLoginStore';
-import { useEffect } from 'react';
 
 export default function useCheckPasswords() {
   const { firstPassword, password } = useUserLoginStore();

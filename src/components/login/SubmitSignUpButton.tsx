@@ -1,15 +1,16 @@
+import { useRouter } from 'next/router';
+
 import { Button } from '@components/common';
-import { signUpEmail } from 'pages/api/login/login';
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/userLoginStore';
-import { useRouter } from 'next/router';
+import { signUpEmail } from 'pages/api/login/login';
 import { loginInputValidation } from 'validation/loginValidation';
 
 export default function SubmitSignUpButton() {
   const router = useRouter();
-  const { email, name, password, firstPassword } = useUserLoginStore();
+  const { email, firstPassword, name, password } = useUserLoginStore();
   const { setError } = useUserLoginErrorStore();
 
   const checkEmailValidation = () => {
@@ -55,9 +56,9 @@ export default function SubmitSignUpButton() {
 
   return (
     <Button
+      buttonStyles={'mb-[20px] mt-[42px] w-full'}
       onClick={handleClickSignUpButton}
       text="입력 완료"
-      buttonStyles={'mb-[20px] mt-[42px] w-full'}
     />
   );
 }

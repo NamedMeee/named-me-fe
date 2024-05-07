@@ -7,18 +7,18 @@ export type ValidationResult = {
 
 type LoginState = {
   email: string;
+  firstPassword: string;
   name: string;
   password: string;
-  firstPassword: string;
   setEmail: (value: string) => void;
+  setFirstPassword: (value: string) => void;
   setName: (value: string) => void;
   setPassword: (value: string) => void;
-  setFirstPassword: (value: string) => void;
 };
 
 export type ErrorState = {
-  firstPasswordError: ValidationResult;
   emailError: ValidationResult;
+  firstPasswordError: ValidationResult;
   nameError: ValidationResult;
   passwordError: ValidationResult;
   setError: (errorField: string, error: ValidationResult) => void;

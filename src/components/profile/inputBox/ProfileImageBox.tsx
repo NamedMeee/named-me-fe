@@ -2,12 +2,12 @@ import ProfileEmoji from '@assets/svgs/ProfileEmoji.svg';
 
 export default function ProfileImageBox() {
   return (
-    <div className="w-[142px] h-[142px] shadow-md rounded-full bg-white flex items-center justify-center border-[1px] border-[#F2F2F2]">
+    <div className="flex h-[142px] w-[142px] items-center justify-center rounded-full border-[1px] border-[#F2F2F2] bg-white shadow-md">
       <div className="text-center">
-        <div className="flex items-center justify-center mb-[6px]">
+        <div className="mb-[6px] flex items-center justify-center">
           <ProfileEmoji />
         </div>
-        <div className="text-center content_normal text-[12px] leading-4 font-light tracking-tight">
+        <div className="content_normal text-center text-[12px] font-light leading-4 tracking-tight">
           프로필 사진
           <br />
           설정하기

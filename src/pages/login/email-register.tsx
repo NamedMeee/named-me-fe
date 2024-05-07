@@ -1,17 +1,17 @@
 import Input from '@components/common/Input';
-import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import LoginMainLayout from '@components/layout/LoginMainLayout';
+import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import SubmitSignUpButton from '@components/login/SubmitSignUpButton';
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/userLoginStore';
-import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useCheckPasswords from 'hooks/useCheckPasswords';
+import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
 
 export default function EmailLogin() {
-  const { firstPassword, email, name, password } = useUserLoginStore();
+  const { email, firstPassword, name, password } = useUserLoginStore();
   const { emailError, firstPasswordError, nameError, passwordError } =
     useUserLoginErrorStore();
 
@@ -30,44 +30,44 @@ export default function EmailLogin() {
       <PageTitleWithLogo title="가입하기" />
       <div className="mt-[36px]">
         <Input
-          labelText="이메일"
-          placeholder="sample@email.com"
-          onChange={handleChangeEmail}
-          value={email}
           error={emailError.error}
           errorMessage={emailError.errorMessage}
+          labelText="이메일"
+          onChange={handleChangeEmail}
+          placeholder="sample@email.com"
+          value={email}
         />
       </div>
       <div className="mt-[24px]">
         <Input
-          labelText="아이디 (닉네임)"
-          placeholder="@my_nickname"
-          onChange={handleChangeName}
-          value={name}
           error={nameError.error}
           errorMessage={nameError.errorMessage}
+          labelText="아이디 (닉네임)"
+          onChange={handleChangeName}
+          placeholder="@my_nickname"
+          value={name}
         />
       </div>
       <div className="mt-[36px]">
         <Input
-          labelText="비밀번호 확인"
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          onChange={handleChangePassword}
-          value={password}
           error={passwordError.error || firstPasswordError.error}
           errorMessage={passwordError.errorMessage}
+          labelText="비밀번호 확인"
+          onChange={handleChangePassword}
+          placeholder="비밀번호를 입력해주세요."
+          type="password"
+          value={password}
         />
       </div>
       <div className="mt-[24px]">
         <Input
-          labelText="비밀번호"
-          type="password"
-          placeholder="비밀번호를 한 번 더 입력해주세요."
-          onChange={handleChangeFirstPassword}
-          value={firstPassword}
           error={firstPasswordError.error}
           errorMessage={firstPasswordError.errorMessage}
+          labelText="비밀번호"
+          onChange={handleChangeFirstPassword}
+          placeholder="비밀번호를 한 번 더 입력해주세요."
+          type="password"
+          value={firstPassword}
         />
       </div>
       <SubmitSignUpButton />

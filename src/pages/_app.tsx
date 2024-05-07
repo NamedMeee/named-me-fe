@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { AppProps } from 'next/app';
-import KakaoLoginAccess from '@components/head/KakaoLoginAccess';
 import { SessionProvider } from 'next-auth/react';
+import { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
+
+import KakaoLoginAccess from '@components/head/KakaoLoginAccess';
+
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

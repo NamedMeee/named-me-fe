@@ -1,12 +1,16 @@
 import SmallLogo from '@assets/svgs/SmallLogo.svg';
 
-export default function PageTitleWithLogo({ title }: { title: string }) {
+export default function PageTitleWithLogo({
+  title,
+}: {
+  title: string | JSX.Element;
+}) {
   return (
     <>
-      <div className="flex justify-center mt-[50px]">
+      <div className="mt-[50px] flex justify-center">
         <SmallLogo />
       </div>
-      <div className="text-center font_display_bold_sm mt-[8px]">{title}</div>
+      <div className="font_display_bold_sm mt-[8px] text-center">{title}</div>
     </>
   );
 }

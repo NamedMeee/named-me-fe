@@ -1,8 +1,8 @@
+import { useRouter } from 'next/router';
+
 import { Button } from '@components/common';
 import { useUserLoginErrorStore } from '@zustand/userLoginStore';
-import { useRouter } from 'next/router';
 import { signInEmail } from 'pages/api/login/login';
-import { useEffect } from 'react';
 import { loginInputValidation } from 'validation/loginValidation';
 
 interface SubmitLoginButtonProps {
@@ -51,9 +51,9 @@ export default function SubmitLoginButton({
 
   return (
     <Button
+      buttonStyles={'mb-[20px] mt-[48px] w-full'}
       onClick={handleClickLoginButton}
       text="로그인"
-      buttonStyles={'mb-[20px] mt-[48px] w-full'}
     />
   );
 }

@@ -1,7 +1,7 @@
-import { fetchKakaoAcessToken, getKakaoUserData } from 'apis/kakaoLogin';
-import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+
+import { getKakaoUserData } from 'apis/kakaoLogin';
 
 export default function KakaoLogin() {
   const router = useRouter();

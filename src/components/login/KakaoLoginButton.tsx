@@ -1,7 +1,8 @@
+import { useRouter } from 'next/router';
+
 import { Button } from '@components/common';
 
 import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
-import { useRouter } from 'next/router';
 
 export default function KakaoLoginButton() {
   const router = useRouter();
@@ -14,15 +15,15 @@ export default function KakaoLoginButton() {
 
   return (
     <Button
-      onClick={kakaoLogin}
       buttonColor="bg-[#FEEA2A]"
+      buttonStyles="mb-[12px]"
+      onClick={kakaoLogin}
       text={
-        <div className="flex justify-center items-center gap-x-[6px]">
-          <KakaoLogo className="w-[14px] h-[14px]" />
+        <div className="flex items-center justify-center gap-x-[6px]">
+          <KakaoLogo className="h-[14px] w-[14px]" />
           카카오로 시작하기
         </div>
       }
-      buttonStyles="mb-[12px]"
       textColor="text-[#333334]"
     />
   );

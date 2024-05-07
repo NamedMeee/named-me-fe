@@ -1,18 +1,20 @@
-import Logo from '@assets/svgs/SmallLogo.svg';
-import ToggleSwitch from './ToggleSwitch';
 import { useState } from 'react';
+
+import ToggleSwitch from './ToggleSwitch';
+
+import Logo from '@assets/svgs/SmallLogo.svg';
 
 export default function OnwerMenuBar() {
   const [isToggle, setIsToggle] = useState<boolean>(true);
 
   return (
-    <div className="w-full bg-white shadow-md justify-center flex">
-      <div className="max-w-[500px] flex w-full h-[56px] p-4 justify-between items-center flex-shrink-0">
+    <div className="flex w-full justify-center bg-white shadow-md">
+      <div className="flex h-[56px] w-full max-w-[500px] flex-shrink-0 items-center justify-between p-4">
         <Logo />
         <ToggleSwitch
           checked={isToggle}
-          onCheckedChange={() => setIsToggle(!isToggle)}
           defaultChecked={true}
+          onCheckedChange={() => setIsToggle(!isToggle)}
         />
       </div>
     </div>

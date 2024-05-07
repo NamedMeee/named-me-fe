@@ -4,6 +4,7 @@ module.exports = {
     'unused-imports',
     'typescript-sort-keys',
     'sort-destructure-keys',
+    'no-console-log',
   ],
   extends: [
     'eslint:recommended',
@@ -11,7 +12,6 @@ module.exports = {
     'plugin:@next/next/recommended',
     'plugin:prettier/recommended',
     'plugin:typescript-sort-keys/recommended',
-    'google',
   ],
   settings: {
     'import/resolver': {
@@ -25,6 +25,7 @@ module.exports = {
     React: true,
   },
   rules: {
+    'no-console-log/no-console-log': 1,
     'typescript-sort-keys/interface': 'error',
     'typescript-sort-keys/string-enum': 'error',
     'sort-destructure-keys/sort-destructure-keys': 2,

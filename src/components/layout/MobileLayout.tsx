@@ -11,7 +11,7 @@ export default function MobileLayout({
 }: MobileLayoutProps) {
   return (
     <div className="surface_primary">
-      <div className="relative w-full mx-auto min-h-screen surface_primary">
+      <div className="surface_primary relative mx-auto min-h-screen w-full">
         {header && header}
         <main className="relative mx-auto min-h-screen max-w-[520px]">
           {children}

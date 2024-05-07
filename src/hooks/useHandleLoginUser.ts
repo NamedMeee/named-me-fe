@@ -6,14 +6,14 @@ import { loginInputValidation } from 'validation/loginValidation';
 
 export default function useHandleLoginUser() {
   const {
-    setEmail,
-    setName,
-    setPassword,
-    setFirstPassword,
     email,
+    firstPassword,
     name,
     password,
-    firstPassword,
+    setEmail,
+    setFirstPassword,
+    setName,
+    setPassword,
   } = useUserLoginStore();
 
   const { setError } = useUserLoginErrorStore();

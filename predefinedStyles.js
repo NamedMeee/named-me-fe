@@ -185,7 +185,7 @@ exports.fontStyles = {
   '.font_display_bold_sm': {
     fontWeight: 700,
     fontSize: '32px',
-    lineHeight: '44px',
+    lineHeight: '40px',
   },
 
   // headline

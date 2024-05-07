@@ -1,31 +1,31 @@
 interface ButtonProps {
-  buttonStyles?: string;
-  buttonColor?: string;
-  textColor?: string;
   border?: boolean;
+  buttonColor?: string;
+  buttonStyles?: string;
   onClick?: () => void;
   text: string | React.ReactNode;
+  textColor?: string;
 }
 
 export default function Button({
-  buttonStyles,
-  buttonColor,
-  textColor,
-  text,
-  onClick,
   border = false,
+  buttonColor,
+  buttonStyles,
+  onClick,
+  text,
+  textColor,
 }: ButtonProps) {
   return (
     <div className="flex justify-center">
       <button
-        onClick={onClick}
         className={`${
           border && 'border'
-        } ${buttonStyles} font_label_medium_lg items-center w-full ${
+        } ${buttonStyles} font_label_medium_lg w-full items-center ${
           buttonColor ? buttonColor : 'surface_primary_inverse_active'
         } ${
           textColor ? textColor : 'content_primary_inverse'
         } rounded-[8px] py-[16px]`}
+        onClick={onClick}
       >
         {text}
       </button>

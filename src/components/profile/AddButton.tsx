@@ -4,7 +4,7 @@ interface AddButtonProps {
 
 export default function AddButton({ icon }: AddButtonProps) {
   return (
-    <div className="bg-[#1E1E1E] w-[40px] h-[40px] rounded-[4px] flex justify-center items-center">
+    <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[4px] bg-[#1E1E1E]">
       {icon}
     </div>
   );

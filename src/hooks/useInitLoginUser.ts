@@ -1,15 +1,13 @@
+import { useEffect } from 'react';
+
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/userLoginStore';
-import { useEffect } from 'react';
-import {
-  defaultErrorState,
-  loginInputValidation,
-} from 'validation/loginValidation';
+import { defaultErrorState } from 'validation/loginValidation';
 
 export default function useInitLoginUser() {
-  const { setEmail, setName, setPassword, setFirstPassword } =
+  const { setEmail, setFirstPassword, setName, setPassword } =
     useUserLoginStore();
   const { setError } = useUserLoginErrorStore();
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   PreCheckParamType,
   SignInPayloadType,
@@ -18,8 +19,8 @@ export const signInEmail = async ({ email, password }: SignInPayloadType) => {
 
 export const signUpEmail = async ({
   email,
-  password,
   name,
+  password,
 }: SignUpPayloadType) => {
   const result = await axios.post(`/auth/signup`, { email, password, name });
 
