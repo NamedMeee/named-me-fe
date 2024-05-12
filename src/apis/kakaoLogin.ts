@@ -1,8 +1,8 @@
-import axios from 'axios';
 import pureAxios from 'axios';
-import { getQueryString } from 'libraries/stringUtils';
+
 import Router from 'next/router';
-import { KakaoUserDataType, RedirectUrlParamsType } from 'type/login';
+
+import { RedirectUrlParamsType } from 'type/login';
 
 export const getKakaoUserData = async ({
   code,
@@ -54,7 +54,7 @@ const fetchKakaoUserData = async () => {
     })
     .catch(function (err: any) {
       alert(`사용자 조회에 실패했습니다. [${err.code}] ${err.msg}`);
-      Router.replace('/login');
+      Router.replace('/');
     });
 
   return userData;
@@ -81,6 +81,6 @@ export const fetchKakaoAcessToken = async (code: string) => {
     window.Kakao.Auth.setAccessToken(data.access_token);
   } catch (e: any) {
     alert('토근 발급에 실패하였습니다.');
-    window.location.assign('/login');
+    window.location.assign('/');
   }
-};
+}
