@@ -1,10 +1,10 @@
 import { Button } from '@components/common';
-import { signUpEmail } from 'pages/api/login/login';
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
-} from '@zustand/userLoginStore';
+} from '@zustand/usersLoginStore';
 import { useRouter } from 'next/router';
+import { signUpEmail } from 'pages/api/login/login';
 import { loginInputValidation } from 'validation/loginValidation';
 
 export default function SubmitSignUpButton() {

@@ -1,11 +1,10 @@
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
-} from '@zustand/userLoginStore';
+} from '@zustand/usersLoginStore';
 import { useEffect } from 'react';
 import {
-  defaultErrorState,
-  loginInputValidation,
+  defaultErrorState
 } from 'validation/loginValidation';
 
 export default function useInitLoginUser() {

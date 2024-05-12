@@ -15,9 +15,7 @@ export default function TwitterLoginButton() {
         </div>
       }
       buttonStyles="mb-[12px]"
-      onClick={() => {
-        !session && signIn('twitter');
-      }}
+      onClick={() => signIn('twitter')}
     />
   );
 }

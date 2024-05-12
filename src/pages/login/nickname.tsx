@@ -5,7 +5,7 @@ import SubmitSignUpButton from '@components/login/SubmitSignUpButton';
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
-} from '@zustand/userLoginStore';
+} from '@zustand/usersLoginStore';
 import useCheckPasswords from 'hooks/useCheckPasswords';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
