@@ -4,7 +4,7 @@ import {
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
 import { useRouter } from 'next/router';
-import { signUpEmail } from 'pages/api/login/login';
+import { signUpEmail } from 'pages/api/login/auth';
 import { loginInputValidation } from 'validation/loginValidation';
 
 export default function SubmitSignUpButton() {
