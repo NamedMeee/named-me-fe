@@ -2,6 +2,7 @@ const colorPalette = {
   black: '#000000',
   main_color: '#4DBFFF',
   gray_normal: '#646464',
+  gray_5: '#D5D5D5',
   gray_10: '#2F2F2F',
   gray_50: '#BCBCBC',
   gray_100: '#E6E6E7',
@@ -118,7 +119,8 @@ const contentColors = {
 const borderColors = {
   border_white: 'white',
   border_primary: 'gray_100',
-  border_secondary: 'gray_50',
+  border_oridinary: 'gray_5',
+  border_secondary: 'gray_800',
   border_primary_inverse: 'gray_800',
   border_secondary_inverse: 'gray_600',
   border_active: 'gray_300',
@@ -304,6 +306,11 @@ exports.fontStyles = {
     fontWeight: 400,
     fontSize: '12px',
     lineHeight: '16px',
+  },
+  '.font_label_regular_xsm': {
+    fontWeight: 400,
+    fontSize: '10px',
+    lineHeight: '14px',
   },
 
   // button

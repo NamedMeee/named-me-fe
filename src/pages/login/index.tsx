@@ -1,5 +1,5 @@
 import Input from '@components/common/Input';
-import SubmitLoginButton from '@components/login/SubmitLoginButton';
+import SubmitLoginButton from '@components/login/SubmitSignUpButton';
 import KakaoLoginButton from '@components/login/KakaoLoginButton';
 import TwitterLoginButton from '@components/login/TwitterLoginButton';
 import EmailLoginButton from '@components/login/EmailLoginButton';
