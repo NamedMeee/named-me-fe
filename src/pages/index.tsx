@@ -11,19 +11,13 @@ import {
 } from '@zustand/usersLoginStore';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
-import { useSession } from 'next-auth/react';
 
 export default function EmailLogin() {
-  const { data } = useSession();
   const { email, password } = useUserLoginStore();
   const { emailError, passwordError } = useUserLoginErrorStore();
   const { handleChangeEmail, handleChangePassword } = useHandleLoginUser();
 
   useInitLoginUser();
-
-  if (data) {
-    console.log(data.user);
-  }
 
   return (
     <LoginMainLayout>

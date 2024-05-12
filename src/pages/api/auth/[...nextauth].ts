@@ -22,5 +22,8 @@ export default NextAuth({
         id: token.sub,
       },
     }),
+    async redirect({ url, baseUrl }) {
+      return '/login/social-login';
+    },
   },
 });

@@ -12,8 +12,6 @@ export type PreCheckParamType = {
   name: string;
 };
 
-export type SocialProviderType = 'KAKAO' | 'TWITTER';
-
 export type SocialSignInType = {
   provider: SocialProviderType;
   socialId: string;
@@ -22,7 +20,6 @@ export type SocialSignInType = {
 export type SocialSignUpType = {
   email: string;
   userName: string;
-  isVerifiedEmail: boolean;
   provider: SocialProviderType;
   socialId: string;
   serviceRequiredAgreement: boolean;
@@ -33,3 +30,14 @@ export type SocialCheckType = {
   provider: SocialProviderType;
   socialId: string;
 };
+
+export type GetSocialUserInfoType = {
+  email: string;
+  id: string;
+  image: string;
+  name: string;
+};
+
+export type SocialProviderType = 'KAKAO' | 'TWITTER';
+
+export type SocialCheckStateType = 'SOCIAL_USER' | 'USER' | 'INVALID';
