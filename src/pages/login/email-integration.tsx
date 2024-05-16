@@ -27,7 +27,7 @@ export default function EmailLogin() {
 
   return (
     <LoginMainLayout>
-      <PageTitleWithLogo title="이메일 통합" />
+      <PageTitleWithLogo title="가입하기" />
       <div className="mt-[36px]">
         <Input
           labelText="이메일"
