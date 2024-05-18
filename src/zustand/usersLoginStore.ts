@@ -1,3 +1,4 @@
+import { SocialProviderType } from 'pages/api/login/type';
 import { create } from 'zustand';
 
 export type ValidationResult = {
@@ -10,10 +11,12 @@ type LoginState = {
   name: string;
   password: string;
   firstPassword: string;
+  provider: SocialProviderType;
   setEmail: (value: string) => void;
   setName: (value: string) => void;
   setPassword: (value: string) => void;
   setFirstPassword: (value: string) => void;
+  setProvider: (value: SocialProviderType) => void;
 };
 
 export type ErrorState = {
@@ -29,6 +32,8 @@ export const useUserLoginStore = create<LoginState>((set) => ({
   name: '',
   password: '',
   firstPassword: '',
+  provider: 'KAKAO',
+  setProvider: (value: SocialProviderType) => set({ provider: value }),
   setPassword: (value: string) => set({ password: value }),
   setEmail: (value: string) => set({ email: value }),
   setName: (value: string) => set({ name: value }),

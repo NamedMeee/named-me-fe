@@ -19,7 +19,7 @@ export const useSocialLogin = (provider: SocialProviderType) => {
 
   const moveToEmailIntegration = (userData: GetSocialUserInfoType) => {
     setSessionUserData(userData);
-    router.replace(`/login/email-register`);
+    router.replace(`/login/email-integration`);
   };
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
