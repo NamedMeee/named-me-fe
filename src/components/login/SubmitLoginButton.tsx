@@ -1,7 +1,7 @@
 import { Button } from '@components/common';
 import { useUserLoginErrorStore } from '@zustand/usersLoginStore';
 import { useRouter } from 'next/router';
-import { signInEmail } from 'pages/api/login/login';
+import { signInEmail } from 'pages/api/login/auth';
 import { loginInputValidation } from 'validation/loginValidation';
 
 interface SubmitLoginButtonProps {
