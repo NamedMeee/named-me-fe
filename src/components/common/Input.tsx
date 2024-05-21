@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 
 interface InputProps {
-  labelText: string;
+  labelText?: string;
   width?: number;
   error?: boolean;
   errorMessage?: string;
