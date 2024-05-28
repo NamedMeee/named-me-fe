@@ -5,42 +5,38 @@ import {
 import { loginInputValidation } from 'validation/loginValidation';
 
 export default function useHandleLoginUser() {
-  const {
-    setEmail,
-    setName,
-    setPassword,
-    setFirstPassword,
-    email,
-    name,
-    password,
-    firstPassword,
-  } = useUserLoginStore();
+  const { setLoginState, email, name, password, firstPassword } =
+    useUserLoginStore();
 
-  const { setError } = useUserLoginErrorStore();
+  const { setLoginError } = useUserLoginErrorStore();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setError('emailError', loginInputValidation('email', email));
+    setLoginState({ email: e.target.value });
+    setLoginError({ email: loginInputValidation('email', email) });
   };
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-    setError('nameError', loginInputValidation('name', name));
+    setLoginState({ name: e.target.value });
+    setLoginError({ name: loginInputValidation('name', name) });
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setError('passwordError', loginInputValidation('password', password));
+    setLoginState({ password: e.target.value });
+    setLoginError({
+      password: loginInputValidation('password', password),
+    });
   };
 
   const handleChangeFirstPassword = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setFirstPassword(e.target.value);
-    setError(
-      'firstPasswordError',
-      loginInputValidation('firstPasswordError', { firstPassword, password }),
-    );
+    setLoginState({ firstPassword: e.target.value });
+    setLoginError({
+      firstPassword: loginInputValidation('firstPasswordError', {
+        firstPassword,
+        password,
+      }),
+    });
   };
 
   return {

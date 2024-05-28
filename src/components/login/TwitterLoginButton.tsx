@@ -4,10 +4,10 @@ import { useUserLoginStore } from '@zustand/usersLoginStore';
 import { signIn } from 'next-auth/react';
 
 export default function TwitterLoginButton() {
-  const { setProvider } = useUserLoginStore();
+  const { setLoginState } = useUserLoginStore();
 
   const doTwitterLogin = () => {
-    setProvider('TWITTER');
+    setLoginState({ provider: 'TWITTER' });
     signIn('twitter');
   };
 

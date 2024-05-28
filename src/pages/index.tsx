@@ -14,7 +14,8 @@ import useInitLoginUser from 'hooks/useInitLoginUser';
 
 export default function EmailLogin() {
   const { email, password } = useUserLoginStore();
-  const { emailError, passwordError } = useUserLoginErrorStore();
+  const { email: emailError, password: passwordError } =
+    useUserLoginErrorStore();
   const { handleChangeEmail, handleChangePassword } = useHandleLoginUser();
 
   useInitLoginUser();
@@ -29,7 +30,7 @@ export default function EmailLogin() {
           labelText="이메일"
           placeholder="가입하신 이메일을 입력해 주세요."
           error={emailError.error}
-          errorMessage={emailError.errorMessage}
+          errorMessage={emailError.message}
         />
       </div>
       <div className="mt-[24px]">
@@ -40,7 +41,7 @@ export default function EmailLogin() {
           type="password"
           placeholder="비밀번호를 입력해주세요."
           error={passwordError.error}
-          errorMessage={passwordError.errorMessage}
+          errorMessage={passwordError.message}
         />
       </div>
       <div className="flex justify-center">

@@ -8,7 +8,7 @@ import { loginInputValidation } from 'validation/loginValidation';
 export default function useEmailSignUpValidation() {
   const router = useRouter();
   const { email, name, password, firstPassword } = useUserLoginStore();
-  const { setError } = useUserLoginErrorStore();
+  const { setLoginError } = useUserLoginErrorStore();
 
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
@@ -19,10 +19,12 @@ export default function useEmailSignUpValidation() {
       firstPassword,
     );
 
-    setError('emailError', emailError);
-    setError('firstPasswordError', firstPasswordError);
-    setError('passwordError', passwordError);
-    setError('nameError', nameError);
+    setLoginError({
+      email: emailError,
+      firstPassword: firstPasswordError,
+      password: passwordError,
+      name: nameError,
+    });
 
     return (
       emailError.error ||

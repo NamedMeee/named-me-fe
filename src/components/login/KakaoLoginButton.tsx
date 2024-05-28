@@ -5,10 +5,10 @@ import { useUserLoginStore } from '@zustand/usersLoginStore';
 import { signIn } from 'next-auth/react';
 
 export default function KakaoLoginButton() {
-  const { setProvider } = useUserLoginStore();
+  const { setLoginState } = useUserLoginStore();
 
   const doKakaoLogin = () => {
-    setProvider('KAKAO');
+    setLoginState({ provider: 'KAKAO' });
     signIn('kakao');
   };
 

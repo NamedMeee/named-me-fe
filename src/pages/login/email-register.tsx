@@ -17,8 +17,12 @@ import { signUpEmail } from 'pages/api/login/auth';
 export default function EmailLogin() {
   const router = useRouter();
   const { firstPassword, email, name, password } = useUserLoginStore();
-  const { emailError, firstPasswordError, nameError, passwordError } =
-    useUserLoginErrorStore();
+  const {
+    email: emailError,
+    firstPassword: firstPasswordError,
+    name: nameError,
+    password: passwordError,
+  } = useUserLoginErrorStore();
   const checkEmailValidation = useEmailSignUpValidation();
 
   const {
@@ -68,7 +72,7 @@ export default function EmailLogin() {
           onChange={handleChangeEmail}
           value={email}
           error={emailError.error}
-          errorMessage={emailError.errorMessage}
+          errorMessage={emailError.message}
         />
       </div>
       <div className="mt-[24px]">
@@ -78,7 +82,7 @@ export default function EmailLogin() {
           onChange={handleChangeName}
           value={name}
           error={nameError.error}
-          errorMessage={nameError.errorMessage}
+          errorMessage={nameError.message}
         />
       </div>
       <div className="mt-[36px]">
@@ -89,7 +93,7 @@ export default function EmailLogin() {
           onChange={handleChangePassword}
           value={password}
           error={passwordError.error || firstPasswordError.error}
-          errorMessage={passwordError.errorMessage}
+          errorMessage={passwordError.message}
         />
       </div>
       <div className="mt-[24px]">
@@ -100,7 +104,7 @@ export default function EmailLogin() {
           onChange={handleChangeFirstPassword}
           value={firstPassword}
           error={firstPasswordError.error}
-          errorMessage={firstPasswordError.errorMessage}
+          errorMessage={firstPasswordError.message}
         />
       </div>
       <SubmitSignUpButton onClick={handleClickSignUpButton} />

@@ -14,14 +14,20 @@ export default function SubmitLoginButton({
   password,
 }: SubmitLoginButtonProps) {
   const router = useRouter();
-  const { emailError, passwordError, setError } = useUserLoginErrorStore();
+  const {
+    email: emailError,
+    password: passwordError,
+    setLoginError,
+  } = useUserLoginErrorStore();
 
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
     const passwordError = loginInputValidation('password', password);
 
-    setError('emailError', emailError);
-    setError('passwordError', passwordError);
+    setLoginError({
+      email: emailError,
+      password: passwordError,
+    });
 
     return emailError.error || passwordError.error;
   };

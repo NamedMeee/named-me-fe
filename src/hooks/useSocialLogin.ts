@@ -29,7 +29,7 @@ export const useSocialLogin = (provider: SocialProviderType) => {
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
     const payload = {
-      email: userData.email,
+      email: userData.email || '',
       provider,
       socialId: userData.id,
     };
@@ -37,6 +37,10 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     const state = await socialCheck(payload);
 
     if (state === 'SOCIAL_USER') {
+      if (provider === 'TWITTER') {
+        router.replace('/login/social-email-register');
+      }
+
       const token = await socialSignIn({
         provider,
         socialId: userData.id,

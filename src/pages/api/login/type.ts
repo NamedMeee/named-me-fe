@@ -32,7 +32,7 @@ export type SocialCheckType = {
 };
 
 export type GetSocialUserInfoType = {
-  email: string;
+  email?: string;
   id: string;
   image: string;
   name: string;

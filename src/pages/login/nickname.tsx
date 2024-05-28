@@ -15,7 +15,7 @@ import { socialSignUp } from 'pages/api/login/socialAuth';
 export default function NickName() {
   const router = useRouter();
   const { email, name, socialId, provider } = useUserLoginStore();
-  const { nameError } = useUserLoginErrorStore();
+  const { name: nameError } = useUserLoginErrorStore();
 
   const { handleChangeName } = useHandleLoginUser();
 
@@ -54,12 +54,11 @@ export default function NickName() {
       />
       <div className="mt-[36px]">
         <Input
-          labelText="아이디 (닉네임)"
           placeholder="@my_nickname"
           onChange={handleChangeName}
           value={name}
           error={nameError.error}
-          errorMessage={nameError.errorMessage}
+          errorMessage={nameError.message}
         />
       </div>
       <SubmitSignUpButton onClick={handleClickSignUpButton} />

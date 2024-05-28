@@ -25,7 +25,9 @@ export const socialCheck = async (payload: SocialCheckType) => {
   const { email, provider, socialId } = payload;
 
   const result = await axios.get(
-    `/social/auth/check?email=${email}&provider=${provider}&socialId=${socialId}`,
+    `/social/auth/check?provider=${provider}&socialId=${socialId}${
+      email && `&email=${email}`
+    }`,
   );
 
   return result.data.state;
