@@ -7,13 +7,19 @@ import {
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
 import useCheckPasswords from 'hooks/useCheckPasswords';
+import useEmailSignUpValidation from 'hooks/useEmailSignUpValidation';
+import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
+import { useRouter } from 'next/router';
+import { signUpEmail } from 'pages/api/login/auth';
 
 export default function EmailLogin() {
+  const router = useRouter();
   const { firstPassword, email, name, password } = useUserLoginStore();
   const { emailError, firstPasswordError, nameError, passwordError } =
     useUserLoginErrorStore();
+  const checkEmailValidation = useEmailSignUpValidation();
 
   const {
     handleChangeEmail,
@@ -25,9 +31,36 @@ export default function EmailLogin() {
   useInitLoginUser();
   useCheckPasswords();
 
+  const handleClickSignUpButton = async () => {
+    const validationError = checkEmailValidation();
+
+    if (validationError) {
+      return;
+    }
+
+    try {
+      const { token } = await signUpEmail({ email, name, password });
+
+      if (token) {
+        sessionStorage.setItem('namedme_token', token);
+        router.push('/profile');
+      }
+    } catch (e: any) {
+      const { message, errorCode } = e.response.data;
+
+      if (errorCode) {
+        return alert(message);
+      }
+
+      alert(`가입 과정에서 문제가 발생하였습니다. 다시 시도해주세요.`);
+    }
+  };
+
+  useGetSessionUserInfo();
+
   return (
     <LoginMainLayout>
-      <PageTitleWithLogo title="이메일 통합" />
+      <PageTitleWithLogo title="가입하기" />
       <div className="mt-[36px]">
         <Input
           labelText="이메일"
@@ -70,7 +103,7 @@ export default function EmailLogin() {
           errorMessage={firstPasswordError.errorMessage}
         />
       </div>
-      <SubmitSignUpButton />
+      <SubmitSignUpButton onClick={handleClickSignUpButton} />
     </LoginMainLayout>
   );
 }

@@ -43,8 +43,14 @@ export default function SubmitLoginButton({
         sessionStorage.setItem('namedme_token', token);
         router.push('/profile');
       }
-    } catch (e) {
-      alert('로그인 과정에서 문제가 발생하였습니다.');
+    } catch (e: any) {
+      const { message, errorCode } = e.response.data;
+
+      if (errorCode) {
+        return alert(message);
+      }
+
+      alert('로그인 과정 중에 문제가 생겼습니다. 다시 시도해주세요.');
     }
   };
 

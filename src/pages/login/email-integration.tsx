@@ -25,6 +25,8 @@ export default function EmailLogin() {
   useInitLoginUser();
   useCheckPasswords();
 
+  const handleClickIntegreatButton = async () => {};
+
   return (
     <LoginMainLayout>
       <PageTitleWithLogo title="가입하기" />
@@ -70,7 +72,7 @@ export default function EmailLogin() {
           errorMessage={firstPasswordError.errorMessage}
         />
       </div>
-      <SubmitSignUpButton />
+      <SubmitSignUpButton onClick={handleClickIntegreatButton} />
     </LoginMainLayout>
   );
 }

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { socialCheck, socialLink } from 'pages/api/login/socialAuth';
+import { socialCheck, socialSignIn } from 'pages/api/login/socialAuth';
 import {
   GetSocialUserInfoType,
   SocialProviderType,
@@ -22,6 +22,11 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     router.replace(`/login/email-integration`);
   };
 
+  const moveToProfile = (token: string) => {
+    sessionStorage.setItem('namedme_token', token);
+    router.replace(`/profile`);
+  };
+
   const socialLogin = async (userData: GetSocialUserInfoType) => {
     const payload = {
       email: userData.email,
@@ -32,10 +37,20 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     const state = await socialCheck(payload);
 
     if (state === 'SOCIAL_USER') {
-      return socialLink(payload);
+      const token = await socialSignIn({
+        provider,
+        socialId: userData.id,
+      });
+
+      if (token) {
+        //TODO: 세션 키 관리 따로 빼기
+        sessionStorage.removeItem('socialUserData');
+        moveToProfile(token);
+      }
     }
 
     if (state === 'USER') {
+      //TODO: 계정 연동 우선 보류
       moveToEmailIntegration(userData);
     }
 

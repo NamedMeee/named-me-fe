@@ -11,12 +11,16 @@ type LoginState = {
   name: string;
   password: string;
   firstPassword: string;
+  socialId: string;
+  profileImage: string;
   provider: SocialProviderType;
+  setProfileImage: (value: string) => void;
   setEmail: (value: string) => void;
   setName: (value: string) => void;
   setPassword: (value: string) => void;
   setFirstPassword: (value: string) => void;
   setProvider: (value: SocialProviderType) => void;
+  setSocialId: (value: string) => void;
 };
 
 export type ErrorState = {
@@ -32,7 +36,11 @@ export const useUserLoginStore = create<LoginState>((set) => ({
   name: '',
   password: '',
   firstPassword: '',
+  socialId: '',
+  profileImage: '',
   provider: 'KAKAO',
+  setProfileImage: (value: string) => set({ profileImage: value }),
+  setSocialId: (value: string) => set({ socialId: value }),
   setProvider: (value: SocialProviderType) => set({ provider: value }),
   setPassword: (value: string) => set({ password: value }),
   setEmail: (value: string) => set({ email: value }),
