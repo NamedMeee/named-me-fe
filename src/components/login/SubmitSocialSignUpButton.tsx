@@ -3,6 +3,7 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
+import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { signUpEmail } from 'pages/api/login/auth';
 import { loginInputValidation } from 'validation/loginValidation';
@@ -10,7 +11,7 @@ import { loginInputValidation } from 'validation/loginValidation';
 export default function SubmitSocialSignUpButton() {
   const router = useRouter();
   const { email, name, password, firstPassword } = useUserLoginStore();
-  const { setError } = useUserLoginErrorStore();
+  const { setLoginError } = useUserLoginErrorStore();
 
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
@@ -21,10 +22,12 @@ export default function SubmitSocialSignUpButton() {
       firstPassword,
     );
 
-    setError('emailError', emailError);
-    setError('firstPasswordError', firstPasswordError);
-    setError('passwordError', passwordError);
-    setError('nameError', nameError);
+    setLoginError({
+      email: emailError,
+      firstPassword: firstPasswordError,
+      password: passwordError,
+      name: nameError,
+    });
 
     return (
       emailError.error ||
@@ -45,7 +48,7 @@ export default function SubmitSocialSignUpButton() {
       const { token } = await signUpEmail({ email, name, password });
 
       if (token) {
-        sessionStorage.setItem('namedme_token', token);
+        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
         router.push('/profile');
       }
     } catch (e: any) {

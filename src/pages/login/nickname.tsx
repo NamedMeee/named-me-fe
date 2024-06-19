@@ -10,6 +10,7 @@ import {
 import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
+import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialSignUp } from 'pages/api/login/socialAuth';
 
@@ -33,11 +34,10 @@ export default function NickName() {
         serviceRequiredAgreement: true,
       });
 
-      console.log(token);
-
       if (token) {
-        sessionStorage.setItem('namedme_token', token);
-        router.push('/profile');
+        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
+
+        return router.push('/profile');
       }
     } catch (e: any) {
       alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);

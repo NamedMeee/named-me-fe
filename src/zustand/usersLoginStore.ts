@@ -1,3 +1,8 @@
+import {
+  SESSION_KEY,
+  getSessionStorage,
+  setSessionStorage,
+} from 'libraries/sessionStorageUtils';
 import { SocialProviderType } from 'pages/api/login/type';
 import { create } from 'zustand';
 
@@ -65,12 +70,9 @@ export const useUserLoginErrorStore = create<ErrorState & ErrorActionState>(
 );
 
 export const setLoginProvider = (provider: SocialProviderType) => {
-  typeof window !== 'undefined' &&
-    sessionStorage.setItem('loginProvider', provider);
+  setSessionStorage(SESSION_KEY.LOGIN_PROVIDER, provider);
 };
 
 export const getLoginProvider = () => {
-  return typeof window !== 'undefined'
-    ? (sessionStorage.getItem('loginProvider') as SocialProviderType)
-    : 'DEFAULT';
+  return getSessionStorage(SESSION_KEY.LOGIN_PROVIDER) as SocialProviderType;
 };

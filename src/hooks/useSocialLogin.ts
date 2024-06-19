@@ -1,3 +1,8 @@
+import {
+  SESSION_KEY,
+  removeSessionStorage,
+} from './../libraries/sessionStorageUtils';
+import { setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialCheck, socialSignIn } from 'pages/api/login/socialAuth';
 import {
@@ -9,22 +14,25 @@ export const useSocialLogin = (provider: SocialProviderType) => {
   const router = useRouter();
 
   const setSessionUserData = (userData: GetSocialUserInfoType) => {
-    sessionStorage.setItem('socialUserData', JSON.stringify(userData));
+    setSessionStorage(SESSION_KEY.SOCIAL_USER_DATA, userData);
   };
 
   const moveToNicknameRegister = (userData: GetSocialUserInfoType) => {
     setSessionUserData(userData);
-    router.replace(`/login/nickname`);
+
+    return router.replace(`/login/nickname`);
   };
 
   const moveToEmailIntegration = (userData: GetSocialUserInfoType) => {
     setSessionUserData(userData);
-    router.replace(`/login/email-integration`);
+
+    return router.replace(`/login/email-integration`);
   };
 
   const moveToProfile = (token: string) => {
-    sessionStorage.setItem('namedme_token', token);
-    router.replace(`/profile`);
+    setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
+
+    return router.replace(`/profile`);
   };
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
@@ -43,14 +51,12 @@ export const useSocialLogin = (provider: SocialProviderType) => {
       });
 
       if (token) {
-        //TODO: 세션 키 관리 따로 빼기
-        sessionStorage.removeItem('socialUserData');
+        removeSessionStorage(SESSION_KEY.SOCIAL_USER_DATA);
         moveToProfile(token);
       }
     }
 
     if (state === 'USER') {
-      //TODO: 계정 연동 우선 보류
       moveToEmailIntegration(userData);
     }
 

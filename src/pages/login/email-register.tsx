@@ -11,6 +11,7 @@ import useEmailSignUpValidation from 'hooks/useEmailSignUpValidation';
 import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
+import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { signUpEmail } from 'pages/api/login/auth';
 
@@ -46,7 +47,7 @@ export default function EmailLogin() {
       const { token } = await signUpEmail({ email, name, password });
 
       if (token) {
-        sessionStorage.setItem('namedme_token', token);
+        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
         router.push('/profile');
       }
     } catch (e: any) {
@@ -59,8 +60,6 @@ export default function EmailLogin() {
       alert(`가입 과정에서 문제가 발생하였습니다. 다시 시도해주세요.`);
     }
   };
-
-  useGetSessionUserInfo();
 
   return (
     <LoginMainLayout>
