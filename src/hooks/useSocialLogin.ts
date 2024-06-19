@@ -37,10 +37,6 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     const state = await socialCheck(payload);
 
     if (state === 'SOCIAL_USER') {
-      if (provider === 'TWITTER') {
-        router.replace('/login/social-email-register');
-      }
-
       const token = await socialSignIn({
         provider,
         socialId: userData.id,
@@ -59,6 +55,10 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     }
 
     if (state === 'INVALID') {
+      if (provider === 'TWITTER') {
+        return router.replace('/login/social-email-register');
+      }
+
       moveToNicknameRegister(userData);
     }
   };

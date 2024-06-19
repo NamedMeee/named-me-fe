@@ -3,6 +3,7 @@ import LoginMainLayout from '@components/layout/LoginMainLayout';
 import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import SubmitSignUpButton from '@components/login/SubmitSignUpButton';
 import {
+  getLoginProvider,
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
@@ -14,20 +15,25 @@ import { socialSignUp } from 'pages/api/login/socialAuth';
 
 export default function NickName() {
   const router = useRouter();
-  const { email, name, socialId, provider } = useUserLoginStore();
+
+  const provider = getLoginProvider();
+  const { email, name, socialId } = useUserLoginStore();
   const { name: nameError } = useUserLoginErrorStore();
 
   const { handleChangeName } = useHandleLoginUser();
+  console.log(email, name, provider, socialId);
 
   const handleClickSignUpButton = async () => {
     try {
-      const { token } = await socialSignUp({
+      const token = await socialSignUp({
         email,
         userName: name,
         provider,
         socialId,
         serviceRequiredAgreement: true,
       });
+
+      console.log(token);
 
       if (token) {
         sessionStorage.setItem('namedme_token', token);
@@ -38,8 +44,9 @@ export default function NickName() {
     }
   };
 
-  useInitLoginUser();
-  useGetSessionUserInfo();
+  if (provider === 'KAKAO') {
+    useGetSessionUserInfo();
+  }
 
   return (
     <LoginMainLayout>

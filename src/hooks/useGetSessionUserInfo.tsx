@@ -5,7 +5,9 @@ export default function useGetSessionUserInfo() {
   const { setLoginState } = useUserLoginStore();
 
   const getSetSessionUserInfo = () => {
-    const userData: any = sessionStorage.getItem('socialUserData') ?? '';
+    const userData: any = JSON.parse(
+      sessionStorage.getItem('socialUserData') ?? '',
+    );
 
     if (userData) {
       setLoginState({

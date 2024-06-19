@@ -1,13 +1,11 @@
 import TwitterLogo from '@assets/svgs/TwitterLogo.svg';
 import { Button } from '@components/common';
-import { useUserLoginStore } from '@zustand/usersLoginStore';
+import { setLoginProvider, useUserLoginStore } from '@zustand/usersLoginStore';
 import { signIn } from 'next-auth/react';
 
 export default function TwitterLoginButton() {
-  const { setLoginState } = useUserLoginStore();
-
   const doTwitterLogin = () => {
-    setLoginState({ provider: 'TWITTER' });
+    setLoginProvider('TWITTER');
     signIn('twitter');
   };
 

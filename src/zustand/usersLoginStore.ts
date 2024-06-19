@@ -13,7 +13,6 @@ type LoginState = {
   firstPassword: string;
   socialId: string;
   profileImage: string;
-  provider: SocialProviderType;
 };
 
 type LoginActionState = {
@@ -38,7 +37,6 @@ export const LoginStateDefault: LoginState = {
   firstPassword: '',
   socialId: '',
   profileImage: '',
-  provider: 'KAKAO',
 };
 
 export const LoginErrorStateDefault: ErrorState = {
@@ -65,3 +63,14 @@ export const useUserLoginErrorStore = create<ErrorState & ErrorActionState>(
     },
   }),
 );
+
+export const setLoginProvider = (provider: SocialProviderType) => {
+  typeof window !== 'undefined' &&
+    sessionStorage.setItem('loginProvider', provider);
+};
+
+export const getLoginProvider = () => {
+  return typeof window !== 'undefined'
+    ? (sessionStorage.getItem('loginProvider') as SocialProviderType)
+    : 'DEFAULT';
+};

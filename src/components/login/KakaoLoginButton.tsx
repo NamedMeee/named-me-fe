@@ -1,14 +1,12 @@
 import { Button } from '@components/common';
 
 import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
-import { useUserLoginStore } from '@zustand/usersLoginStore';
+import { setLoginProvider, useUserLoginStore } from '@zustand/usersLoginStore';
 import { signIn } from 'next-auth/react';
 
 export default function KakaoLoginButton() {
-  const { setLoginState } = useUserLoginStore();
-
   const doKakaoLogin = () => {
-    setLoginState({ provider: 'KAKAO' });
+    setLoginProvider('KAKAO');
     signIn('kakao');
   };
 
