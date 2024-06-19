@@ -7,15 +7,10 @@ import {
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
 import useCheckPasswords from 'hooks/useCheckPasswords';
-import useEmailSignUpValidation from 'hooks/useEmailSignUpValidation';
-import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
-import { useRouter } from 'next/router';
-import { signUpEmail } from 'pages/api/login/auth';
 
 export default function EmailLogin() {
-  const router = useRouter();
   const { firstPassword, email, name, password } = useUserLoginStore();
   const {
     email: emailError,
@@ -23,7 +18,6 @@ export default function EmailLogin() {
     name: nameError,
     password: passwordError,
   } = useUserLoginErrorStore();
-  const checkEmailValidation = useEmailSignUpValidation();
 
   const {
     handleChangeEmail,
@@ -35,32 +29,7 @@ export default function EmailLogin() {
   useInitLoginUser();
   useCheckPasswords();
 
-  const handleClickSignUpButton = async () => {
-    const validationError = checkEmailValidation();
-
-    if (validationError) {
-      return;
-    }
-
-    try {
-      const { token } = await signUpEmail({ email, name, password });
-
-      if (token) {
-        sessionStorage.setItem('namedme_token', token);
-        router.push('/profile');
-      }
-    } catch (e: any) {
-      const { message, errorCode } = e.response.data;
-
-      if (errorCode) {
-        return alert(message);
-      }
-
-      alert(`가입 과정에서 문제가 발생하였습니다. 다시 시도해주세요.`);
-    }
-  };
-
-  useGetSessionUserInfo();
+  const handleClickIntegreatButton = async () => {};
 
   return (
     <LoginMainLayout>
@@ -107,7 +76,7 @@ export default function EmailLogin() {
           errorMessage={firstPasswordError.message}
         />
       </div>
-      <SubmitSignUpButton onClick={handleClickSignUpButton} />
+      <SubmitSignUpButton onClick={handleClickIntegreatButton} />
     </LoginMainLayout>
   );
 }

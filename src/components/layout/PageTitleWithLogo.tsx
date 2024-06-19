@@ -1,4 +1,4 @@
-import SmallLogo from '@assets/svgs/SmallLogo.svg';
+import SmallLogoColor from '@assets/svgs/SmallLogoColor.svg';
 
 export default function PageTitleWithLogo({
   title,
@@ -8,7 +8,7 @@ export default function PageTitleWithLogo({
   return (
     <>
       <div className="mt-[50px] flex justify-center">
-        <SmallLogo />
+        <SmallLogoColor />
       </div>
       <div className="font_display_bold_sm mt-[8px] text-center">{title}</div>
     </>

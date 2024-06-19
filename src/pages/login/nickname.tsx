@@ -6,18 +6,40 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
-import useCheckPasswords from 'hooks/useCheckPasswords';
+import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
+import { useRouter } from 'next/router';
+import { socialSignUp } from 'pages/api/login/socialAuth';
 
 export default function NickName() {
-  const { firstPassword, email, name, password } = useUserLoginStore();
-  const { nameError, passwordError } = useUserLoginErrorStore();
+  const router = useRouter();
+  const { email, name, socialId, provider } = useUserLoginStore();
+  const { name: nameError } = useUserLoginErrorStore();
 
   const { handleChangeName } = useHandleLoginUser();
 
+  const handleClickSignUpButton = async () => {
+    try {
+      const { token } = await socialSignUp({
+        email,
+        userName: name,
+        provider,
+        socialId,
+        serviceRequiredAgreement: true,
+      });
+
+      if (token) {
+        sessionStorage.setItem('namedme_token', token);
+        router.push('/profile');
+      }
+    } catch (e: any) {
+      alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
+    }
+  };
+
   useInitLoginUser();
-  useCheckPasswords();
+  useGetSessionUserInfo();
 
   return (
     <LoginMainLayout>
@@ -32,15 +54,14 @@ export default function NickName() {
       />
       <div className="mt-[36px]">
         <Input
-          labelText="아이디 (닉네임)"
           placeholder="@my_nickname"
           onChange={handleChangeName}
           value={name}
           error={nameError.error}
-          errorMessage={nameError.errorMessage}
+          errorMessage={nameError.message}
         />
       </div>
-      <SubmitSignUpButton />
+      <SubmitSignUpButton onClick={handleClickSignUpButton} />
     </LoginMainLayout>
   );
 }

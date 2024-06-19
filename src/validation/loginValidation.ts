@@ -24,7 +24,7 @@ export const loginInputValidation = (
 };
 
 const emailValidation = (email: string) => {
-  if (email.length === 0) {
+  if (email?.length === 0) {
     return {
       error: true,
       errorMessage: '이메일을 입력해주세요.',
@@ -35,7 +35,7 @@ const emailValidation = (email: string) => {
 };
 
 const nameValidation = (name: string) => {
-  if (name.length === 0) {
+  if (name?.length === 0) {
     return {
       error: true,
       errorMessage: '아이디를 입력해주세요.',
@@ -46,7 +46,7 @@ const nameValidation = (name: string) => {
 };
 
 const passwordValidation = (password: string) => {
-  if (password.length === 0) {
+  if (password?.length === 0) {
     return {
       error: true,
       errorMessage: '비밀번호를 입력해주세요.',

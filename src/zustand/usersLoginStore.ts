@@ -1,8 +1,9 @@
+import { SocialProviderType } from 'pages/api/login/type';
 import { create } from 'zustand';
 
 export type ValidationResult = {
   error: boolean;
-  errorMessage?: string;
+  message?: string;
 };
 
 type LoginState = {
@@ -10,39 +11,57 @@ type LoginState = {
   name: string;
   password: string;
   firstPassword: string;
-  setEmail: (value: string) => void;
-  setName: (value: string) => void;
-  setPassword: (value: string) => void;
-  setFirstPassword: (value: string) => void;
+  socialId: string;
+  profileImage: string;
+  provider: SocialProviderType;
 };
 
-export type ErrorState = {
-  firstPasswordError: ValidationResult;
-  emailError: ValidationResult;
-  nameError: ValidationResult;
-  passwordError: ValidationResult;
-  setError: (errorField: string, error: ValidationResult) => void;
+type LoginActionState = {
+  setLoginState: (state: Partial<LoginState>) => void;
 };
 
-export const useUserLoginStore = create<LoginState>((set) => ({
+type ErrorState = {
+  firstPassword: ValidationResult;
+  email: ValidationResult;
+  name: ValidationResult;
+  password: ValidationResult;
+};
+
+type ErrorActionState = {
+  setLoginError: (state: Partial<ErrorState>) => void;
+};
+
+export const LoginStateDefault: LoginState = {
   email: '',
   name: '',
   password: '',
   firstPassword: '',
-  setPassword: (value: string) => set({ password: value }),
-  setEmail: (value: string) => set({ email: value }),
-  setName: (value: string) => set({ name: value }),
-  setFirstPassword: (value: string) => set({ firstPassword: value }),
-}));
+  socialId: '',
+  profileImage: '',
+  provider: 'KAKAO',
+};
 
-export const useUserLoginErrorStore = create<ErrorState>((set) => ({
-  emailError: { error: false, message: '' },
-  firstPasswordError: { error: false, message: '' },
-  nameError: { error: false, message: '' },
-  passwordError: { error: false, message: '' },
-  setError: (errorField: string, errorState: ValidationResult) =>
-    set((state: ErrorState) => ({
-      ...state,
-      [errorField]: errorState,
-    })),
-}));
+export const LoginErrorStateDefault: ErrorState = {
+  email: { error: false, message: '' },
+  firstPassword: { error: false, message: '' },
+  name: { error: false, message: '' },
+  password: { error: false, message: '' },
+};
+
+export const useUserLoginStore = create<LoginState & LoginActionState>(
+  (set) => ({
+    ...LoginStateDefault,
+    setLoginState: (update: Partial<LoginState>) => {
+      set((state: LoginState) => ({ ...state, ...update }));
+    },
+  }),
+);
+
+export const useUserLoginErrorStore = create<ErrorState & ErrorActionState>(
+  (set) => ({
+    ...LoginErrorStateDefault,
+    setLoginError: (update: Partial<ErrorState>) => {
+      set((state: ErrorState) => ({ ...state, ...update }));
+    },
+  }),
+);

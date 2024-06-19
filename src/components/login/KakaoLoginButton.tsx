@@ -1,15 +1,20 @@
 import { Button } from '@components/common';
 
 import KakaoLogo from '@assets/svgs/KakaoLogo.svg';
+import { useUserLoginStore } from '@zustand/usersLoginStore';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 export default function KakaoLoginButton() {
-  const router = useRouter();
+  const { setLoginState } = useUserLoginStore();
+
+  const doKakaoLogin = () => {
+    setLoginState({ provider: 'KAKAO' });
+    signIn('kakao');
+  };
 
   return (
     <Button
-      onClick={() => signIn('kakao')}
+      onClick={doKakaoLogin}
       buttonColor="bg-[#FEEA2A]"
       text={
         <div className="flex justify-center items-center gap-x-[6px]">

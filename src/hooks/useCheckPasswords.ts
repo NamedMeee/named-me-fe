@@ -3,24 +3,29 @@ import {
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
 import { useEffect } from 'react';
+import { defaultErrorState } from 'validation/loginValidation';
 
 export default function useCheckPasswords() {
   const { firstPassword, password } = useUserLoginStore();
 
-  const { setError } = useUserLoginErrorStore();
+  const { setLoginError } = useUserLoginErrorStore();
 
   useEffect(() => {
     if (password !== firstPassword) {
-      setError('firstPasswordError', {
-        error: true,
-        errorMessage: '비밀번호가 일치하지 않습니다.',
+      setLoginError({
+        firstPassword: {
+          error: true,
+          message: '비밀번호가 일치하지 않습니다.',
+        },
+        password: defaultErrorState,
       });
-      setError('password', { error: true, errorMessage: '' });
 
       return;
     }
 
-    setError('firstPasswordError', { error: false, errorMessage: '' });
-    setError('password', { error: false, errorMessage: '' });
+    setLoginError({
+      firstPassword: defaultErrorState,
+      password: defaultErrorState,
+    });
   }, [password, firstPassword]);
 }

@@ -1,7 +1,7 @@
 import { Button } from '@components/common';
 import { useUserLoginErrorStore } from '@zustand/usersLoginStore';
 import { useRouter } from 'next/router';
-import { signInEmail } from 'pages/api/login/login';
+import { signInEmail } from 'pages/api/login/auth';
 import { loginInputValidation } from 'validation/loginValidation';
 
 interface SubmitLoginButtonProps {
@@ -14,14 +14,20 @@ export default function SubmitLoginButton({
   password,
 }: SubmitLoginButtonProps) {
   const router = useRouter();
-  const { emailError, passwordError, setError } = useUserLoginErrorStore();
+  const {
+    email: emailError,
+    password: passwordError,
+    setLoginError,
+  } = useUserLoginErrorStore();
 
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
     const passwordError = loginInputValidation('password', password);
 
-    setError('emailError', emailError);
-    setError('passwordError', passwordError);
+    setLoginError({
+      email: emailError,
+      password: passwordError,
+    });
 
     return emailError.error || passwordError.error;
   };
@@ -43,8 +49,14 @@ export default function SubmitLoginButton({
         sessionStorage.setItem('namedme_token', token);
         router.push('/profile');
       }
-    } catch (e) {
-      alert('로그인 과정에서 문제가 발생하였습니다.');
+    } catch (e: any) {
+      const { message, errorCode } = e.response.data;
+
+      if (errorCode) {
+        return alert(message);
+      }
+
+      alert('로그인 과정 중에 문제가 생겼습니다. 다시 시도해주세요.');
     }
   };
 
