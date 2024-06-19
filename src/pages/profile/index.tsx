@@ -12,6 +12,7 @@ import ProfileImageBox from '@components/profile/inputBox/ProfileImageBox';
 import ShareButton from '@components/profile/ShareButton';
 import SettingButton from '@components/profile/SettingButton';
 import AddBox from '@components/profile/inputBox/AddBox';
+import AlertModal from '@components/common/AlertModal';
 
 export type TabType = 'PROFILE' | 'QUESTION';
 
@@ -20,6 +21,7 @@ export default function Profile() {
 
   return (
     <MobileLayout header={<OnwerMenuBar />}>
+      <AlertModal />
       <div className="px-[24px]">
         <div className="flex justify-center item-center grid grid-cols-2 mt-[28px] mb-[32px]">
           <ProfileImageBox />
