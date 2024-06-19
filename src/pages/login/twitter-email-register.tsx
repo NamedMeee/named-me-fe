@@ -2,8 +2,6 @@ import { Button } from '@components/common';
 import Input from '@components/common/Input';
 import LoginMainLayout from '@components/layout/LoginMainLayout';
 import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
-import SubmitSignUpButton from '@components/login/SubmitSignUpButton';
-import SubmitSocialSignUpButton from '@components/login/SubmitSocialSignUpButton';
 import {
   useUserLoginErrorStore,
   useUserLoginStore,
@@ -17,14 +15,14 @@ import { useRouter } from 'next/router';
 
 export default function TwitterEmailRegister() {
   const router = useRouter();
-  const { email, setName } = useUserLoginStore();
-  const { emailError } = useUserLoginErrorStore();
+  const { email, setLoginState } = useUserLoginStore();
+  const { email: emailError } = useUserLoginErrorStore();
 
   const { handleChangeEmail } = useHandleLoginUser();
 
   const handleClickNext = () => {
     //if(provider === 'twitter') {
-    setName(extractEmailPart(email));
+    setLoginState({ name: extractEmailPart(email) });
     router.push('/login/nickname');
   };
 
@@ -48,7 +46,7 @@ export default function TwitterEmailRegister() {
           onChange={handleChangeEmail}
           value={email}
           error={emailError.error}
-          errorMessage={emailError.errorMessage}
+          errorMessage={emailError.message}
         />
       </div>
       <Button

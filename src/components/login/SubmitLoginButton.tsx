@@ -1,5 +1,6 @@
 import { Button } from '@components/common';
 import { useUserLoginErrorStore } from '@zustand/usersLoginStore';
+import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { signInEmail } from 'pages/api/login/auth';
 import { loginInputValidation } from 'validation/loginValidation';
@@ -46,7 +47,7 @@ export default function SubmitLoginButton({
       });
 
       if (token) {
-        sessionStorage.setItem('namedme_token', token);
+        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
         router.push('/profile');
       }
     } catch (e: any) {

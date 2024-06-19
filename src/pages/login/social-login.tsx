@@ -1,14 +1,14 @@
-import { useUserLoginStore } from '@zustand/usersLoginStore';
+import { getLoginProvider, useUserLoginStore } from '@zustand/usersLoginStore';
 import { useSocialLogin } from 'hooks/useSocialLogin';
+import { get } from 'http';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { GetSocialUserInfoType } from 'pages/api/login/type';
 import { useEffect } from 'react';
 
 export default function SocialLogin() {
-  const router = useRouter();
   const { data } = useSession();
-  const { provider } = useUserLoginStore();
+  const provider = getLoginProvider();
 
   const { socialLogin } = useSocialLogin(provider);
 

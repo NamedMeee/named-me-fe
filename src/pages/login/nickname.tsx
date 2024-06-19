@@ -3,25 +3,30 @@ import LoginMainLayout from '@components/layout/LoginMainLayout';
 import PageTitleWithLogo from '@components/layout/PageTitleWithLogo';
 import SubmitSignUpButton from '@components/login/SubmitSignUpButton';
 import {
+  getLoginProvider,
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
 import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/useHandleLoginUser';
 import useInitLoginUser from 'hooks/useInitLoginUser';
+import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialSignUp } from 'pages/api/login/socialAuth';
 
 export default function NickName() {
   const router = useRouter();
-  const { email, name, socialId, provider } = useUserLoginStore();
+
+  const provider = getLoginProvider();
+  const { email, name, socialId } = useUserLoginStore();
   const { name: nameError } = useUserLoginErrorStore();
 
   const { handleChangeName } = useHandleLoginUser();
+  console.log(email, name, provider, socialId);
 
   const handleClickSignUpButton = async () => {
     try {
-      const { token } = await socialSignUp({
+      const token = await socialSignUp({
         email,
         userName: name,
         provider,
@@ -30,16 +35,18 @@ export default function NickName() {
       });
 
       if (token) {
-        sessionStorage.setItem('namedme_token', token);
-        router.push('/profile');
+        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
+
+        return router.push('/profile');
       }
     } catch (e: any) {
       alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
     }
   };
 
-  useInitLoginUser();
-  useGetSessionUserInfo();
+  if (provider === 'KAKAO') {
+    useGetSessionUserInfo();
+  }
 
   return (
     <LoginMainLayout>
