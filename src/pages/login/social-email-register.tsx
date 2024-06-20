@@ -22,7 +22,6 @@ export default function SocialEmailRegister() {
     router.push('/login/nickname');
   };
 
-  useInitLoginUser();
   useGetSessionUserInfo();
 
   return (

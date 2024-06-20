@@ -1,3 +1,8 @@
+import {
+  SESSION_KEY,
+  getSessionStorage,
+  setSessionStorage,
+} from 'libraries/sessionStorageUtils';
 import { SocialProviderType } from 'pages/api/login/type';
 import { create } from 'zustand';
 
@@ -13,7 +18,6 @@ type LoginState = {
   firstPassword: string;
   socialId: string;
   profileImage: string;
-  provider: SocialProviderType;
 };
 
 type LoginActionState = {
@@ -38,7 +42,6 @@ export const LoginStateDefault: LoginState = {
   firstPassword: '',
   socialId: '',
   profileImage: '',
-  provider: 'KAKAO',
 };
 
 export const LoginErrorStateDefault: ErrorState = {
@@ -65,3 +68,11 @@ export const useUserLoginErrorStore = create<ErrorState & ErrorActionState>(
     },
   }),
 );
+
+export const setLoginProvider = (provider: SocialProviderType) => {
+  setSessionStorage(SESSION_KEY.LOGIN_PROVIDER, provider);
+};
+
+export const getLoginProvider = () => {
+  return getSessionStorage(SESSION_KEY.LOGIN_PROVIDER) as SocialProviderType;
+};

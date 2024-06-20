@@ -38,6 +38,7 @@ export type GetSocialUserInfoType = {
   name: string;
 };
 
-export type SocialProviderType = 'KAKAO' | 'TWITTER';
+// DEFAULT는 ERROR 값
+export type SocialProviderType = 'KAKAO' | 'TWITTER' | 'DEFAULT';
 
 export type SocialCheckStateType = 'SOCIAL_USER' | 'USER' | 'INVALID';
