@@ -10,8 +10,8 @@ services:
       - '80:80'
     depends_on:
       - node
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
   node:
     container_name: 'node'
     build:
