@@ -9,8 +9,7 @@ import {
   getSessionStorage,
   removeSessionStorage,
 } from 'libraries/sessionStorageUtils';
-
-axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
+import { authAxios } from '../axios';
 
 export const signInEmail = async ({ email, password }: SignInPayloadType) => {
   const result = await axios.post(`/auth/signin`, { email, password });
@@ -48,17 +47,15 @@ export const signOut = async () => {
   return result;
 };
 
+export const logout = async () => {
+  const result = await authAxios.post(`/auth/logout`);
+
+  return result;
+};
+
 export const deleteUserAccount = async () => {
   try {
-    const token = getSessionStorage(SESSION_KEY.USER_TOKEN) ?? '';
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const { data } = await axios.post(`/user/leave`, null, config);
+    const { data } = await authAxios.post(`/user/leave`);
 
     // TODO: 탈퇴 메세지 모달로 별도 처리
     alert('회원 탈퇴가 완료되었습니다.' + data.message);
