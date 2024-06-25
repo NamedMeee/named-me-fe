@@ -1,18 +1,23 @@
 import { Button } from '@components/common';
+import {
+  SESSION_KEY,
+  removeSessionStorage,
+} from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
-import { deleteUserAccount } from 'pages/api/login/auth';
+import { logout } from 'pages/api/login/auth';
 
 export default function LogoutButton() {
   const router = useRouter();
 
-  const handleClickLeave = async () => {
-    const result = await deleteUserAccount();
+  const handleClickLogout = async () => {
+    const result = await logout();
+
+    removeSessionStorage(SESSION_KEY.LOGIN_TOKEN);
 
     if (result) {
-      // TODO: 회원 탈퇴 완료 페이지로 추후 이동
       router.push('/');
     }
   };
 
-  return <Button text={'탈퇴'} onClick={handleClickLeave} />;
+  return <Button text={'로그아웃'} onClick={handleClickLogout} />;
 }

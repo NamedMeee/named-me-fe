@@ -41,14 +41,8 @@ export const signUpPreCheck = async ({ email, name }: PreCheckParamType) => {
   return result;
 };
 
-export const signOut = async () => {
-  const result = await axios.post(`/auth/signout`);
-
-  return result;
-};
-
 export const logout = async () => {
-  const result = await authAxios.post(`/auth/logout`);
+  const result = await authAxios.post(`/auth/signout`);
 
   return result;
 };
