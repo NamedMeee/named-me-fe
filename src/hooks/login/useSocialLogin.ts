@@ -9,9 +9,11 @@ import {
   GetSocialUserInfoType,
   SocialProviderType,
 } from 'pages/api/login/type';
+import useSaveLoginToken from './useSaveLoginToken';
 
 export const useSocialLogin = (provider: SocialProviderType) => {
   const router = useRouter();
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
 
   const setSessionUserData = (userData: GetSocialUserInfoType) => {
     setSessionStorage(SESSION_KEY.SOCIAL_USER_DATA, userData);
@@ -27,12 +29,6 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     setSessionUserData(userData);
 
     return router.replace(`/login/email-integration`);
-  };
-
-  const moveToProfile = (token: string) => {
-    setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-
-    return router.replace(`/profile`);
   };
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
@@ -51,8 +47,7 @@ export const useSocialLogin = (provider: SocialProviderType) => {
       });
 
       if (token) {
-        removeSessionStorage(SESSION_KEY.SOCIAL_USER_DATA);
-        moveToProfile(token);
+        saveLoginTokenMoveToHome(token);
       }
     }
 

@@ -9,10 +9,12 @@ import {
 } from '@zustand/usersLoginStore';
 import useGetSessionUserInfo from 'hooks/login/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
+import useSaveLoginToken from 'hooks/login/useSaveLoginToken';
 
 import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialSignUp } from 'pages/api/login/socialAuth';
+import { use } from 'react';
 
 export default function NickName() {
   const router = useRouter();
@@ -20,8 +22,9 @@ export default function NickName() {
   const provider = getLoginProvider();
   const { email, name, socialId } = useUserLoginStore();
   const { name: nameError } = useUserLoginErrorStore();
-
   const { handleChangeName } = useHandleLoginUser();
+
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
 
   const handleClickSignUpButton = async () => {
     try {
@@ -33,11 +36,7 @@ export default function NickName() {
         serviceRequiredAgreement: true,
       });
 
-      if (token) {
-        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-
-        return router.push('/profile');
-      }
+      saveLoginTokenMoveToHome(token);
     } catch (e: any) {
       alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
     }

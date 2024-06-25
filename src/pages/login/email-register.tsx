@@ -10,6 +10,7 @@ import useCheckPasswords from 'hooks/login/useCheckPasswords';
 import useEmailSignUpValidation from 'hooks/login/useEmailSignUpValidation';
 import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
 import useInitLoginUser from 'hooks/login/useInitLoginUser';
+import useSaveLoginToken from 'hooks/login/useSaveLoginToken';
 
 import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
@@ -24,6 +25,8 @@ export default function EmailLogin() {
     name: nameError,
     password: passwordError,
   } = useUserLoginErrorStore();
+
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
   const checkEmailValidation = useEmailSignUpValidation();
 
   const {
@@ -46,10 +49,7 @@ export default function EmailLogin() {
     try {
       const { token } = await signUpEmail({ email, name, password });
 
-      if (token) {
-        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-        router.push('/profile');
-      }
+      saveLoginTokenMoveToHome(token);
     } catch (e: any) {
       const { message, errorCode } = e.response.data;
 
