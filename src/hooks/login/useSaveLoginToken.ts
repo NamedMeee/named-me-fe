@@ -17,6 +17,7 @@ export default function useSaveLoginToken() {
 
       if (provider) {
         removeSessionStorage(SESSION_KEY.SOCIAL_USER_DATA);
+        removeSessionStorage(SESSION_KEY.LOGIN_PROVIDER);
       }
 
       setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);

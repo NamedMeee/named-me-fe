@@ -19,16 +19,10 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     setSessionStorage(SESSION_KEY.SOCIAL_USER_DATA, userData);
   };
 
-  const moveToNicknameRegister = (userData: GetSocialUserInfoType) => {
+  const saveUserInfoMoveTo = (userData: GetSocialUserInfoType, url: string) => {
     setSessionUserData(userData);
 
-    return router.replace(`/login/nickname`);
-  };
-
-  const moveToEmailIntegration = (userData: GetSocialUserInfoType) => {
-    setSessionUserData(userData);
-
-    return router.replace(`/login/email-integration`);
+    return router.replace(url);
   };
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
@@ -52,15 +46,15 @@ export const useSocialLogin = (provider: SocialProviderType) => {
     }
 
     if (state === 'USER') {
-      moveToEmailIntegration(userData);
+      saveUserInfoMoveTo(userData, '/login/email-integration');
     }
 
     if (state === 'INVALID') {
       if (provider === 'TWITTER') {
-        return router.replace('/login/social-email-register');
+        return saveUserInfoMoveTo(userData, '/login/social-email-register');
       }
 
-      moveToNicknameRegister(userData);
+      saveUserInfoMoveTo(userData, '/login/nickname');
     }
   };
 

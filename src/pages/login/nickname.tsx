@@ -10,15 +10,9 @@ import {
 import useGetSessionUserInfo from 'hooks/login/useGetSessionUserInfo';
 import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
 import useSaveLoginToken from 'hooks/login/useSaveLoginToken';
-
-import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
-import { useRouter } from 'next/router';
 import { socialSignUp } from 'pages/api/login/socialAuth';
-import { use } from 'react';
 
 export default function NickName() {
-  const router = useRouter();
-
   const provider = getLoginProvider();
   const { email, name, socialId } = useUserLoginStore();
   const { name: nameError } = useUserLoginErrorStore();
@@ -42,9 +36,7 @@ export default function NickName() {
     }
   };
 
-  if (provider === 'KAKAO') {
-    useGetSessionUserInfo();
-  }
+  useGetSessionUserInfo();
 
   return (
     <LoginMainLayout>
