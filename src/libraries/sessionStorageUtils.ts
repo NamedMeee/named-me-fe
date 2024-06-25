@@ -2,6 +2,7 @@ export const SESSION_KEY = {
   LOGIN_TOKEN: 'namedme_token',
   SOCIAL_USER_DATA: 'socialUserData',
   LOGIN_PROVIDER: 'loginProvider',
+  USER_TOKEN: 'namedme_token',
 };
 
 export const getSessionStorage = (key: string) => {

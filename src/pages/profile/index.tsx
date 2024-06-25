@@ -13,6 +13,7 @@ import ShareButton from '@components/profile/ShareButton';
 import SettingButton from '@components/profile/SettingButton';
 import AddBox from '@components/profile/inputBox/AddBox';
 import AlertModal from '@components/common/AlertModal';
+import LeaveButton from '@components/login/LeaveButton';
 
 export type TabType = 'PROFILE' | 'QUESTION';
 
@@ -37,6 +38,8 @@ export default function Profile() {
             />
           </div>
         </div>
+        {/** TODO: 테스트용, 추후 지우기 */}
+        <LeaveButton />
         <AddBox />
         {/** 
         <AlertBox />

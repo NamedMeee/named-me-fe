@@ -4,6 +4,7 @@ import {
   SignInPayloadType,
   SignUpPayloadType,
 } from './type';
+import { SESSION_KEY } from 'libraries/sessionStorageUtils';
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 
@@ -41,4 +42,29 @@ export const signOut = async () => {
   const result = await axios.post(`/auth/signout`);
 
   return result;
+};
+
+export const deleteUserAccount = async () => {
+  try {
+    const token = JSON.parse(
+      sessionStorage.getItem(SESSION_KEY.USER_TOKEN) ?? '',
+    );
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.post(`/user/leave`, null, config);
+
+    // TODO: 탈퇴 메세지 모달로 별도 처리
+    alert('회원 탈퇴가 완료되었습니다.' + data.message);
+
+    return true;
+  } catch (error) {
+    alert('회원 탈퇴 실패. 다시 시도해주세요.');
+
+    return false;
+  }
 };
