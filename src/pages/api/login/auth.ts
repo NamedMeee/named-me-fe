@@ -4,7 +4,7 @@ import {
   SignInPayloadType,
   SignUpPayloadType,
 } from './type';
-import { SESSION_KEY } from 'libraries/sessionStorageUtils';
+import { SESSION_KEY, getSessionStorage } from 'libraries/sessionStorageUtils';
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 
@@ -46,9 +46,7 @@ export const signOut = async () => {
 
 export const deleteUserAccount = async () => {
   try {
-    const token = JSON.parse(
-      sessionStorage.getItem(SESSION_KEY.USER_TOKEN) ?? '',
-    );
+    const token = getSessionStorage(SESSION_KEY.USER_TOKEN) ?? '';
 
     const config = {
       headers: {

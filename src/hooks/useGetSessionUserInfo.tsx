@@ -9,7 +9,7 @@ export default function useGetSessionUserInfo() {
     const userDataString = getSessionStorage(SESSION_KEY.SOCIAL_USER_DATA);
 
     if (userDataString) {
-      const userData = JSON.parse(userDataString);
+      const userData = userDataString;
 
       setLoginState({
         email: userData.email,

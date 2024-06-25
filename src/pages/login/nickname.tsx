@@ -22,13 +22,12 @@ export default function NickName() {
   const { name: nameError } = useUserLoginErrorStore();
 
   const { handleChangeName } = useHandleLoginUser();
-  console.log(email, name, provider, socialId);
 
   const handleClickSignUpButton = async () => {
     try {
       const token = await socialSignUp({
         email,
-        userName: name,
+        name,
         provider,
         socialId,
         serviceRequiredAgreement: true,
