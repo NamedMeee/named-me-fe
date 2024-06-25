@@ -12,6 +12,7 @@ export default function useGetSessionUserInfo() {
     if (userDataString) {
       const userData = userDataString;
 
+      // twitter login : 이메일 없는 경우 대응
       setLoginState({
         email: userData.email ?? email,
         name: userData.name.replaceAll(' ', '_'),
