@@ -6,9 +6,9 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
-import useCheckPasswords from 'hooks/useCheckPasswords';
-import useHandleLoginUser from 'hooks/useHandleLoginUser';
-import useInitLoginUser from 'hooks/useInitLoginUser';
+import useCheckPasswords from 'hooks/login/useCheckPasswords';
+import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
+import useInitLoginUser from 'hooks/login/useInitLoginUser';
 
 export default function EmailLogin() {
   const { firstPassword, email, name, password } = useUserLoginStore();

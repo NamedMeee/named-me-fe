@@ -25,7 +25,7 @@ export default function EmailLogin() {
       </div>
       <div className="flex justify-center">
         <div className="w-[320px]">
-          <SubmitLoginButton />
+          <SubmitLoginButton onClick={() => {}} />
           <div className="relative border-b-[1px] border_disabled mb-[24px] pb-[24px]">
             <div className="flex justify-center">
               <div className="content_tertiary w-full absolute p-4 bg-white w-[118px] font_label_regular_sm text-center">

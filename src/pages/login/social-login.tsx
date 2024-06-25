@@ -1,5 +1,5 @@
 import { getLoginProvider, useUserLoginStore } from '@zustand/usersLoginStore';
-import { useSocialLogin } from 'hooks/useSocialLogin';
+import { useSocialLogin } from 'hooks/login/useSocialLogin';
 import { get } from 'http';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

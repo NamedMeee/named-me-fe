@@ -7,9 +7,9 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
-import useGetSessionUserInfo from 'hooks/useGetSessionUserInfo';
-import useHandleLoginUser from 'hooks/useHandleLoginUser';
-import useInitLoginUser from 'hooks/useInitLoginUser';
+import useGetSessionUserInfo from 'hooks/login/useGetSessionUserInfo';
+import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
+
 import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialSignUp } from 'pages/api/login/socialAuth';

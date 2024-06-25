@@ -4,14 +4,21 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
+import { setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useEffect } from 'react';
 
 export default function useInitLoginUser() {
   const { setLoginState } = useUserLoginStore();
   const { setLoginError } = useUserLoginErrorStore();
 
-  useEffect(() => {
+  const initLoginInput = () => {
     setLoginState(LoginStateDefault);
     setLoginError(LoginErrorStateDefault);
+  };
+
+  useEffect(() => {
+    initLoginInput();
   }, []);
+
+  return { initLoginInput };
 }

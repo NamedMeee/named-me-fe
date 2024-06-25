@@ -4,7 +4,11 @@ import {
   SignInPayloadType,
   SignUpPayloadType,
 } from './type';
-import { SESSION_KEY, getSessionStorage } from 'libraries/sessionStorageUtils';
+import {
+  SESSION_KEY,
+  getSessionStorage,
+  removeSessionStorage,
+} from 'libraries/sessionStorageUtils';
 
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
 
@@ -58,6 +62,8 @@ export const deleteUserAccount = async () => {
 
     // TODO: 탈퇴 메세지 모달로 별도 처리
     alert('회원 탈퇴가 완료되었습니다.' + data.message);
+
+    removeSessionStorage(SESSION_KEY.USER_TOKEN);
 
     return true;
   } catch (error) {

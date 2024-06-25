@@ -1,8 +1,8 @@
 import {
   SESSION_KEY,
   removeSessionStorage,
-} from './../libraries/sessionStorageUtils';
-import { setSessionStorage } from 'libraries/sessionStorageUtils';
+  setSessionStorage,
+} from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialCheck, socialSignIn } from 'pages/api/login/socialAuth';
 import {

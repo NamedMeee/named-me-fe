@@ -9,8 +9,8 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
-import useHandleLoginUser from 'hooks/useHandleLoginUser';
-import useInitLoginUser from 'hooks/useInitLoginUser';
+import useHandleLoginUser from 'hooks/login/useHandleLoginUser';
+import useInitLoginUser from 'hooks/login/useInitLoginUser';
 
 export default function EmailLogin() {
   const { email, password } = useUserLoginStore();
