@@ -1,38 +1,28 @@
 import {
   SESSION_KEY,
   removeSessionStorage,
-} from './../libraries/sessionStorageUtils';
-import { setSessionStorage } from 'libraries/sessionStorageUtils';
+  setSessionStorage,
+} from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { socialCheck, socialSignIn } from 'pages/api/login/socialAuth';
 import {
   GetSocialUserInfoType,
   SocialProviderType,
 } from 'pages/api/login/type';
+import useSaveLoginToken from './useSaveLoginToken';
 
 export const useSocialLogin = (provider: SocialProviderType) => {
   const router = useRouter();
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
 
   const setSessionUserData = (userData: GetSocialUserInfoType) => {
     setSessionStorage(SESSION_KEY.SOCIAL_USER_DATA, userData);
   };
 
-  const moveToNicknameRegister = (userData: GetSocialUserInfoType) => {
+  const saveUserInfoMoveTo = (userData: GetSocialUserInfoType, url: string) => {
     setSessionUserData(userData);
 
-    return router.replace(`/login/nickname`);
-  };
-
-  const moveToEmailIntegration = (userData: GetSocialUserInfoType) => {
-    setSessionUserData(userData);
-
-    return router.replace(`/login/email-integration`);
-  };
-
-  const moveToProfile = (token: string) => {
-    setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-
-    return router.replace(`/profile`);
+    return router.replace(url);
   };
 
   const socialLogin = async (userData: GetSocialUserInfoType) => {
@@ -51,21 +41,20 @@ export const useSocialLogin = (provider: SocialProviderType) => {
       });
 
       if (token) {
-        removeSessionStorage(SESSION_KEY.SOCIAL_USER_DATA);
-        moveToProfile(token);
+        saveLoginTokenMoveToHome(token);
       }
     }
 
     if (state === 'USER') {
-      moveToEmailIntegration(userData);
+      saveUserInfoMoveTo(userData, '/login/email-integration');
     }
 
     if (state === 'INVALID') {
       if (provider === 'TWITTER') {
-        return router.replace('/login/social-email-register');
+        return saveUserInfoMoveTo(userData, '/login/social-email-register');
       }
 
-      moveToNicknameRegister(userData);
+      saveUserInfoMoveTo(userData, '/login/nickname');
     }
   };
 

@@ -3,6 +3,7 @@ import {
   useUserLoginErrorStore,
   useUserLoginStore,
 } from '@zustand/usersLoginStore';
+import useSaveLoginToken from 'hooks/login/useSaveLoginToken';
 import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { signUpEmail } from 'pages/api/login/auth';
@@ -13,6 +14,7 @@ export default function SubmitSocialSignUpButton() {
   const { email, name, password, firstPassword } = useUserLoginStore();
   const { setLoginError } = useUserLoginErrorStore();
 
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
     const passwordError = loginInputValidation('password', password);
@@ -47,10 +49,7 @@ export default function SubmitSocialSignUpButton() {
     try {
       const { token } = await signUpEmail({ email, name, password });
 
-      if (token) {
-        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-        router.push('/profile');
-      }
+      saveLoginTokenMoveToHome(token);
     } catch (e: any) {
       alert(`가입 과정에서 문제가 발생하였습니다. ${e}`);
     }

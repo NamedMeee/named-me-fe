@@ -10,8 +10,14 @@ export default function useInitLoginUser() {
   const { setLoginState } = useUserLoginStore();
   const { setLoginError } = useUserLoginErrorStore();
 
-  useEffect(() => {
+  const initLoginInput = () => {
     setLoginState(LoginStateDefault);
     setLoginError(LoginErrorStateDefault);
+  };
+
+  useEffect(() => {
+    initLoginInput();
   }, []);
+
+  return { initLoginInput };
 }

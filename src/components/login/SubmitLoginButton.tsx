@@ -1,8 +1,10 @@
 import { Button } from '@components/common';
 import { useUserLoginErrorStore } from '@zustand/usersLoginStore';
+import useSaveLoginToken from 'hooks/login/useSaveLoginToken';
 import { SESSION_KEY, setSessionStorage } from 'libraries/sessionStorageUtils';
 import { useRouter } from 'next/router';
 import { signInEmail } from 'pages/api/login/auth';
+import { use } from 'react';
 import { loginInputValidation } from 'validation/loginValidation';
 
 interface SubmitLoginButtonProps {
@@ -20,6 +22,7 @@ export default function SubmitLoginButton({
     password: passwordError,
     setLoginError,
   } = useUserLoginErrorStore();
+  const saveLoginTokenMoveToHome = useSaveLoginToken();
 
   const checkEmailValidation = () => {
     const emailError = loginInputValidation('email', email);
@@ -46,10 +49,7 @@ export default function SubmitLoginButton({
         password,
       });
 
-      if (token) {
-        setSessionStorage(SESSION_KEY.LOGIN_TOKEN, token);
-        router.push('/profile');
-      }
+      saveLoginTokenMoveToHome(token);
     } catch (e: any) {
       const { message, errorCode } = e.response.data;
 

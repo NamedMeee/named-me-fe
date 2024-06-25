@@ -4,8 +4,12 @@ import {
   SignInPayloadType,
   SignUpPayloadType,
 } from './type';
-
-axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_HOST}/api/v1`;
+import {
+  SESSION_KEY,
+  getSessionStorage,
+  removeSessionStorage,
+} from 'libraries/sessionStorageUtils';
+import { authAxios } from '../axios';
 
 export const signInEmail = async ({ email, password }: SignInPayloadType) => {
   const result = await axios.post(`/auth/signin`, { email, password });
@@ -37,8 +41,25 @@ export const signUpPreCheck = async ({ email, name }: PreCheckParamType) => {
   return result;
 };
 
-export const signOut = async () => {
-  const result = await axios.post(`/auth/signout`);
+export const logout = async () => {
+  const result = await authAxios.post(`/auth/signout`);
 
   return result;
+};
+
+export const deleteUserAccount = async () => {
+  try {
+    const { data } = await authAxios.post(`/user/leave`);
+
+    // TODO: 탈퇴 메세지 모달로 별도 처리
+    alert('회원 탈퇴가 완료되었습니다.' + data.message);
+
+    removeSessionStorage(SESSION_KEY.USER_TOKEN);
+
+    return true;
+  } catch (error) {
+    alert('회원 탈퇴 실패. 다시 시도해주세요.');
+
+    return false;
+  }
 };

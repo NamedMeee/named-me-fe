@@ -19,7 +19,7 @@ export type SocialSignInType = {
 
 export type SocialSignUpType = {
   email: string;
-  userName: string;
+  name: string;
   provider: SocialProviderType;
   socialId: string;
   serviceRequiredAgreement: boolean;
